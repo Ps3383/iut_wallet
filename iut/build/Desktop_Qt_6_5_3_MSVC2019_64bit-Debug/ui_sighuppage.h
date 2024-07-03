@@ -23,17 +23,17 @@ class Ui_sighuppage
 {
 public:
     QGroupBox *groupBox;
-    QLineEdit *lineEdit;
+    QLineEdit *lineemail;
     QLabel *label;
     QLabel *label_2;
-    QLineEdit *lineEdit_2;
-    QLineEdit *lineEdit_3;
+    QLineEdit *linepassword;
+    QLineEdit *linename;
     QLabel *label_3;
     QLabel *label_4;
-    QLineEdit *lineEdit_4;
+    QLineEdit *lineaddress;
     QLabel *label_5;
-    QLineEdit *lineEdit_5;
-    QPushButton *pushButton;
+    QLineEdit *linetele;
+    QPushButton *regi;
     QPushButton *pushButton_2;
 
     void setupUi(QDialog *sighuppage)
@@ -44,39 +44,39 @@ public:
         groupBox = new QGroupBox(sighuppage);
         groupBox->setObjectName("groupBox");
         groupBox->setGeometry(QRect(60, 10, 581, 371));
-        lineEdit = new QLineEdit(groupBox);
-        lineEdit->setObjectName("lineEdit");
-        lineEdit->setGeometry(QRect(210, 40, 113, 24));
+        lineemail = new QLineEdit(groupBox);
+        lineemail->setObjectName("lineemail");
+        lineemail->setGeometry(QRect(210, 40, 113, 24));
         label = new QLabel(groupBox);
         label->setObjectName("label");
         label->setGeometry(QRect(100, 40, 61, 21));
         label_2 = new QLabel(groupBox);
         label_2->setObjectName("label_2");
         label_2->setGeometry(QRect(90, 90, 61, 21));
-        lineEdit_2 = new QLineEdit(groupBox);
-        lineEdit_2->setObjectName("lineEdit_2");
-        lineEdit_2->setGeometry(QRect(210, 90, 113, 24));
-        lineEdit_3 = new QLineEdit(groupBox);
-        lineEdit_3->setObjectName("lineEdit_3");
-        lineEdit_3->setGeometry(QRect(210, 140, 113, 24));
+        linepassword = new QLineEdit(groupBox);
+        linepassword->setObjectName("linepassword");
+        linepassword->setGeometry(QRect(210, 90, 113, 24));
+        linename = new QLineEdit(groupBox);
+        linename->setObjectName("linename");
+        linename->setGeometry(QRect(210, 140, 113, 24));
         label_3 = new QLabel(groupBox);
         label_3->setObjectName("label_3");
         label_3->setGeometry(QRect(100, 140, 61, 16));
         label_4 = new QLabel(groupBox);
         label_4->setObjectName("label_4");
         label_4->setGeometry(QRect(90, 200, 61, 21));
-        lineEdit_4 = new QLineEdit(groupBox);
-        lineEdit_4->setObjectName("lineEdit_4");
-        lineEdit_4->setGeometry(QRect(210, 200, 113, 24));
+        lineaddress = new QLineEdit(groupBox);
+        lineaddress->setObjectName("lineaddress");
+        lineaddress->setGeometry(QRect(210, 200, 113, 24));
         label_5 = new QLabel(groupBox);
         label_5->setObjectName("label_5");
         label_5->setGeometry(QRect(90, 260, 71, 21));
-        lineEdit_5 = new QLineEdit(groupBox);
-        lineEdit_5->setObjectName("lineEdit_5");
-        lineEdit_5->setGeometry(QRect(210, 260, 113, 24));
-        pushButton = new QPushButton(groupBox);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(470, 320, 80, 24));
+        linetele = new QLineEdit(groupBox);
+        linetele->setObjectName("linetele");
+        linetele->setGeometry(QRect(210, 260, 113, 24));
+        regi = new QPushButton(groupBox);
+        regi->setObjectName("regi");
+        regi->setGeometry(QRect(470, 320, 80, 24));
         pushButton_2 = new QPushButton(groupBox);
         pushButton_2->setObjectName("pushButton_2");
         pushButton_2->setGeometry(QRect(350, 320, 80, 24));
@@ -95,7 +95,7 @@ public:
         label_3->setText(QCoreApplication::translate("sighuppage", "name", nullptr));
         label_4->setText(QCoreApplication::translate("sighuppage", "address", nullptr));
         label_5->setText(QCoreApplication::translate("sighuppage", "telephone", nullptr));
-        pushButton->setText(QCoreApplication::translate("sighuppage", "register", nullptr));
+        regi->setText(QCoreApplication::translate("sighuppage", "register", nullptr));
         pushButton_2->setText(QCoreApplication::translate("sighuppage", "back", nullptr));
     } // retranslateUi
 

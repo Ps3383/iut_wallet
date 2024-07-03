@@ -1,5 +1,5 @@
 QT       += core gui
-
+QT += network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
@@ -12,12 +12,14 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     sighuppage.cpp \
-    signinpage.cpp
+    signinpage.cpp \
+    user.cpp
 
 HEADERS += \
     mainwindow.h \
     sighuppage.h \
-    signinpage.h
+    signinpage.h \
+    user.h
 
 FORMS += \
     mainwindow.ui \

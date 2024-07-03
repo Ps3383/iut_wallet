@@ -25,7 +25,7 @@
    <property name="title">
     <string>sign up</string>
    </property>
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="lineemail">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -61,7 +61,7 @@
      <string>password</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="linepassword">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -71,7 +71,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="linename">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -107,7 +107,7 @@
      <string>address</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_4">
+   <widget class="QLineEdit" name="lineaddress">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -130,7 +130,7 @@
      <string>telephone</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_5">
+   <widget class="QLineEdit" name="linetele">
     <property name="geometry">
      <rect>
       <x>210</x>
@@ -140,7 +140,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="regi">
     <property name="geometry">
      <rect>
       <x>470</x>
