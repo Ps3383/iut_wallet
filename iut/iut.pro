@@ -10,13 +10,19 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    sighuppage.cpp \
+    signinpage.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    sighuppage.h \
+    signinpage.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    sighuppage.ui \
+    signinpage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
