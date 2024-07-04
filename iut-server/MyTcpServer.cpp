@@ -15,7 +15,15 @@ void MyTcpServer::onReadyRead() {
 
     QByteArray data = socket->readAll();
     QJsonDocument doc = QJsonDocument::fromJson(data);
+	if (doc.isNull()) {
+        qDebug() << "Invalid JSON received";
+        socket->write("Invalid JSON");
+        socket->flush();
+        socket->close();
+        return;
+    }
     QJsonObject json = doc.object();
+	qDebug() << "Received JSON:" << doc.toJson(QJsonDocument::Indented);
 
     QString email = json["email"].toString();
     QString password = json["password"].toString();
@@ -24,18 +32,18 @@ void MyTcpServer::onReadyRead() {
     QString phoneNumber = json["phoneNumber"].toString();
 
     QSqlQuery query;
-    query.prepare("INSERT INTO users (email, password, name, address, phoneNumber) "
-                  "VALUES (?, ?, ?, ?, ?, ?)");
-    query.addBindValue(email);
-    query.addBindValue(password);
-    query.addBindValue(name);
-    query.addBindValue(address);
-    query.addBindValue(phoneNumber);
+    query.prepare("INSERT INTO users (email, password, name, address, phoneNumber) VALUES (:email, :password, :name, :address, :phoneNumber)");
+    query.bindValue(":email", email);
+    query.bindValue(":password", password);
+    query.bindValue(":name", name);
+    query.bindValue(":address", address);
+    query.bindValue(":phoneNumber", phoneNumber);
 
     if (!query.exec()) {
         qDebug() << "Insert error:" << query.lastError().text();
         socket->write("Error");
     } else {
+		qDebug() << "Data inserted successfully";
         socket->write("Success");
     }
 

@@ -1,5 +1,5 @@
 QT       += core gui
-
+QT += network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
@@ -10,13 +10,21 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    sighuppage.cpp \
+    signinpage.cpp \
+    user.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    sighuppage.h \
+    signinpage.h \
+    user.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    sighuppage.ui \
+    signinpage.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
