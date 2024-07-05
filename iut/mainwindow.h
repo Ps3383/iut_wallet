@@ -22,26 +22,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void sendUser(const User& user) {
-        QJsonObject json;
-        json["email"] = user.email;
-        json["password"] = user.password;
-        json["name"] = user.name;
-        json["address"] = user.address;
-        json["phoneNumber"] = user.phoneNumber;
-
-        QJsonDocument doc(json);
-        QByteArray data = doc.toJson();
-
-        socket->connectToHost("127.0.0.1", 1234);
-        if (socket->waitForConnected(3000)) {
-            socket->write(data);
-            socket->flush();
-        } else {
-            qDebug() << "Connection failed!";
-        }
-    }
-
+    // void sendUser( User user);
 protected slots:
     void onReadyRead() {
         QByteArray data = socket->readAll();
@@ -52,13 +33,15 @@ private slots:
 
     void on_pushButton_clicked();
 
-private:
+public:
     Ui::MainWindow *ui;
     QTcpSocket *socket;
     sighuppage * re;
     signinpage * ss;
 };
+void sendUser( User user);
 
+//extern MainWindow w;
 
 // class User {
 // public:

@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    accountpage.cpp \
     main.cpp \
     mainwindow.cpp \
     sighuppage.cpp \
@@ -16,12 +17,14 @@ SOURCES += \
     user.cpp
 
 HEADERS += \
+    accountpage.h \
     mainwindow.h \
     sighuppage.h \
     signinpage.h \
     user.h
 
 FORMS += \
+    accountpage.ui \
     mainwindow.ui \
     sighuppage.ui \
     signinpage.ui

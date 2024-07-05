@@ -23,12 +23,12 @@ class Ui_signinpage
 {
 public:
     QGroupBox *groupBox;
-    QPushButton *pushButton;
+    QPushButton *login;
     QPushButton *pushButton_2;
     QLabel *label;
     QLabel *label_2;
-    QLineEdit *lineEdit;
-    QLineEdit *lineEdit_2;
+    QLineEdit *lineemail;
+    QLineEdit *linepassword;
 
     void setupUi(QDialog *signinpage)
     {
@@ -38,9 +38,9 @@ public:
         groupBox = new QGroupBox(signinpage);
         groupBox->setObjectName("groupBox");
         groupBox->setGeometry(QRect(110, 20, 491, 331));
-        pushButton = new QPushButton(groupBox);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(390, 280, 80, 24));
+        login = new QPushButton(groupBox);
+        login->setObjectName("login");
+        login->setGeometry(QRect(390, 280, 80, 24));
         pushButton_2 = new QPushButton(groupBox);
         pushButton_2->setObjectName("pushButton_2");
         pushButton_2->setGeometry(QRect(260, 280, 80, 24));
@@ -50,12 +50,12 @@ public:
         label_2 = new QLabel(groupBox);
         label_2->setObjectName("label_2");
         label_2->setGeometry(QRect(50, 110, 61, 31));
-        lineEdit = new QLineEdit(groupBox);
-        lineEdit->setObjectName("lineEdit");
-        lineEdit->setGeometry(QRect(150, 60, 113, 24));
-        lineEdit_2 = new QLineEdit(groupBox);
-        lineEdit_2->setObjectName("lineEdit_2");
-        lineEdit_2->setGeometry(QRect(150, 110, 113, 24));
+        lineemail = new QLineEdit(groupBox);
+        lineemail->setObjectName("lineemail");
+        lineemail->setGeometry(QRect(150, 60, 113, 24));
+        linepassword = new QLineEdit(groupBox);
+        linepassword->setObjectName("linepassword");
+        linepassword->setGeometry(QRect(150, 110, 113, 24));
 
         retranslateUi(signinpage);
 
@@ -66,7 +66,7 @@ public:
     {
         signinpage->setWindowTitle(QCoreApplication::translate("signinpage", "Dialog", nullptr));
         groupBox->setTitle(QCoreApplication::translate("signinpage", "sign in", nullptr));
-        pushButton->setText(QCoreApplication::translate("signinpage", "login", nullptr));
+        login->setText(QCoreApplication::translate("signinpage", "login", nullptr));
         pushButton_2->setText(QCoreApplication::translate("signinpage", "back", nullptr));
         label->setText(QCoreApplication::translate("signinpage", "Email", nullptr));
         label_2->setText(QCoreApplication::translate("signinpage", "Password", nullptr));
