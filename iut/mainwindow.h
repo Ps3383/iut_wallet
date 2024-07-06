@@ -22,7 +22,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    // void sendUser( User user);
+    void sendUser( User user);
 protected slots:
     void onReadyRead() {
         QByteArray data = socket->readAll();
@@ -39,7 +39,7 @@ public:
     sighuppage * re;
     signinpage * ss;
 };
-void sendUser( User user);
+//void sendUser( User user);
 
 //extern MainWindow w;
 

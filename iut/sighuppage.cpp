@@ -1,9 +1,8 @@
 #include "sighuppage.h"
 #include "ui_sighuppage.h"
-#include"mainwindow.h"
-#include<QMessageBox>
-#include"user.h"
-
+#include "mainwindow.h"
+#include <QMessageBox>
+#include <QDebug>
 
 sighuppage::sighuppage(QWidget *parent)
     : QDialog(parent)
@@ -20,32 +19,31 @@ sighuppage::~sighuppage()
 void sighuppage::on_pushButton_2_clicked()
 {
     hide();
-    MainWindow * b;
+    MainWindow *b;
     b = new MainWindow(this);
     b->show();
 }
 
-
-
-
 void sighuppage::on_regi_clicked()
 {
-   //MainWindow *s;
-
-    QString em  = ui->lineemail->text();
+    QString em = ui->lineemail->text();
     QString ps = ui->linepassword->text();
     QString adr = ui->lineaddress->text();
     QString tel = ui->linetele->text();
     QString na = ui->linename->text();
-    if(em!="" && ps!=""){
-        User user1(em,ps,na,adr,tel);
-        QMessageBox::information(this,"sign up","successfully added");
-        qDebug()<<"before calling senduser";
-        sendUser(user1);
-        qDebug()<<"after calling senduser";
+
+    if (!em.isEmpty() && !ps.isEmpty()) {
+        User user1(em, ps, na, adr, tel);
+        QMessageBox::information(this, "Sign up", "Successfully added");
+
+        // دسترسی به شیء MainWindow و فراخوانی sendUser
+        MainWindow *mainWindow = qobject_cast<MainWindow*>(parent());
+        if (mainWindow) {
+            mainWindow->sendUser(user1);
+        }
+
     }
-    else{
-        QMessageBox::warning(this,"sign up","fill up email and password!");
+    else {
+        QMessageBox::warning(this, "Sign up", "Fill up email and password!");
     }
 }
-
