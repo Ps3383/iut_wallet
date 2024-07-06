@@ -41,7 +41,10 @@ void sighuppage::on_regi_clicked()
         if (mainWindow) {
             mainWindow->sendUser(user1);
         }
-
+        hide();
+        MainWindow * b;
+        b = new MainWindow(this);
+        b->show();
     }
     else {
         QMessageBox::warning(this, "Sign up", "Fill up email and password!");
