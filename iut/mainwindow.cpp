@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QJsonDocument>
 #include <QJsonObject>
+#include"signinpage.h"
 #include <QMessageBox>
 #include <QDebug>
 
@@ -29,12 +30,15 @@ void MainWindow::on_pushButton_clicked()
 {
     hide();
     ss = new signinpage(this);
+    // فراخوانی تابع initialize بعد از نمایش صفحه
     ss->show();
+
 }
 
 void MainWindow::sendUser( User user)
 {
     QJsonObject json;
+    json["type"] = "signup";
     json["email"] = user.email;
     json["password"] = user.password;
     json["name"] = user.name;
