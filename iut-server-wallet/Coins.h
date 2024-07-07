@@ -4,28 +4,12 @@
 #include <string>
 #include <unordered_set>
 #include <QObject>
-#include <QtNetwork>
 #include <QDebug>
-
-class CoinGeckoAPI : public QObject {
-    Q_OBJECT
-public:
-    CoinGeckoAPI(QObject *parent = nullptr);
-
-    void getCoinDetails(const QString &coinId);
-    void getCurrentPrice(const QString &coinId);
-
-private slots:
-    void onResult(QNetworkReply *reply);
-
-private:
-    QNetworkAccessManager *manager;
-};
 
 class Coin {
 public:
-    int balance;
-    int price;
+    float balance;
+    float price;
     std::string address;
 
     Coin();
@@ -52,17 +36,17 @@ public:
     void dummyFunction() override {}
 };
 
-class TON : public Coin {
+class TRON : public Coin {
 public:
-    TON();
+    TRON();
     void dummyFunction() override {}
 };
 
 // Global variables for coin prices
-extern int BTCPrice;
-extern int ETHPrice;
-extern int TONPrice;
+extern float BTCPrice;
+extern float ETHPrice;
+extern float TRONPrice;
 
-void fetchCoinPricesFromAPI();
+// void fetchCoinPricesFromAPI(const QString & coinID);
 
 #endif // COINS_H

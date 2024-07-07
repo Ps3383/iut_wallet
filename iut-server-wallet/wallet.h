@@ -8,7 +8,7 @@ class Wallet {
 public:
     BTC btc;
     ETH eth;
-    TON ton;
+    TRON trx;
     float USDT;
     std::string email;
 

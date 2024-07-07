@@ -9,9 +9,9 @@
 
 std::unordered_set<std::string> Coin::usedAddresses;
 
-int BTCPrice = 0;
-int ETHPrice = 0;
-int TONPrice = 0;
+float BTCPrice = 0;
+float ETHPrice = 0;
+float TRONPrice = 0;
 
 Coin::Coin() {
     address = generateUniqueAddress();
@@ -43,45 +43,28 @@ ETH::ETH() {
     address += "ETH";
 }
 
-TON::TON() {
-    price = TONPrice;
-    address += "TON";
+TRON::TRON() {
+    price = TRONPrice;
+    address += "TRON";
 }
 
-void fetchCoinPricesFromAPI() {
+// void fetchCoinPricesFromAPI() {
 
-  // Example price for COINS
-    BTCPrice = 30000;
-    ETHPrice = 2000;
-    TONPrice = 5;
+//   // Example price for COINS
+//     BTCPrice = 55000;
+//     ETHPrice = 7000;
+//     TONPrice = 7;
 
-}
+// }
 
-CoinGeckoAPI::CoinGeckoAPI(QObject *parent) : QObject(parent) {
-    manager = new QNetworkAccessManager(this);
-    connect(manager, &QNetworkAccessManager::finished, this, &CoinGeckoAPI::onResult);
-}
-
-void CoinGeckoAPI::getCoinDetails(const QString &coinId) {
-    QUrl url("https://api.coingecko.com/api/v3/coins/" + coinId);
-    QNetworkRequest request(url);
-    manager->get(request);
-}
-
-void CoinGeckoAPI::getCurrentPrice(const QString &coinId) {
-    QUrl url("https://api.coingecko.com/api/v3/simple/price?ids=" + coinId + "&vs_currencies=usd");
-    QNetworkRequest request(url);
-    manager->get(request);
-}
-
-void CoinGeckoAPI::onResult(QNetworkReply *reply) {
-    if (reply->error() == QNetworkReply::NoError) {
-        QByteArray responseData = reply->readAll();
-        QJsonDocument jsonResponse = QJsonDocument::fromJson(responseData);
-        QJsonObject jsonObject = jsonResponse.object();
-        qDebug() << jsonObject;
-    } else {
-        qDebug() << "Error:" << reply->errorString();
-    }
-    reply->deleteLater();
-}
+// void CoinGeckoAPI::onResult(QNetworkReply *reply) {
+//     if (reply->error() == QNetworkReply::NoError) {
+//         QByteArray responseData = reply->readAll();
+//         QJsonDocument jsonResponse = QJsonDocument::fromJson(responseData);
+//         QJsonObject jsonObject = jsonResponse.object();
+//         qDebug() << jsonObject;
+//     } else {
+//         qDebug() << "Error:" << reply->errorString();
+//     }
+//     reply->deleteLater();
+// }
