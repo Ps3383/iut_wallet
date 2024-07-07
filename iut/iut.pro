@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     accountpage.cpp \
+    createwallet.cpp \
     main.cpp \
     mainwindow.cpp \
     sighuppage.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
 
 HEADERS += \
     accountpage.h \
+    createwallet.h \
     mainwindow.h \
     sighuppage.h \
     signinpage.h \
@@ -25,6 +27,7 @@ HEADERS += \
 
 FORMS += \
     accountpage.ui \
+    createwallet.ui \
     mainwindow.ui \
     sighuppage.ui \
     signinpage.ui

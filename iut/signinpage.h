@@ -15,7 +15,6 @@ class signinpage : public QDialog
 public:
     explicit signinpage(QWidget *parent = nullptr);
     ~signinpage();
-    void setupconnection();
 
 private slots:
     void on_pushButton_2_clicked();

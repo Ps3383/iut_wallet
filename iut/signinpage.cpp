@@ -11,12 +11,6 @@ signinpage::signinpage(QWidget *parent)
     ui->setupUi(this);
 }
 
-void signinpage::setupconnection(){
-
-}
-
-
-
 signinpage::~signinpage()
 {
     delete ui;
@@ -30,7 +24,8 @@ void signinpage::on_pushButton_2_clicked()
     b->show();
 }
 
-
+QString em ;
+QString ps;
 void signinpage::on_login_clicked()
 {
     ssocket = new QTcpSocket(this);
@@ -38,8 +33,8 @@ void signinpage::on_login_clicked()
     connect(ssocket, &QTcpSocket::readyRead, this, &signinpage::onReadyRead);
     connect(ssocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::errorOccurred),
             this, &signinpage::onError);
-    QString em = ui->lineemail->text();
-    QString ps = ui->linepassword->text();
+     em = ui->lineemail->text();
+     ps = ui->linepassword->text();
 
     QJsonObject json;
     json["type"] = "signin";
@@ -50,11 +45,7 @@ void signinpage::on_login_clicked()
     QByteArray data = doc.toJson();
 
 
-    qDebug() << "data was sent to server";
-
     ssocket->connectToHost("127.0.0.1", 1234);
-    qDebug() << "data was sent to server";
-
 
     if (ssocket->waitForConnected(3000)) {
         ssocket->write(data);
@@ -64,15 +55,12 @@ void signinpage::on_login_clicked()
     else {
         qDebug() << "Connection failed!";
     }
-    // else{
-    //     QMessageBox::warning(this,"sign up","fill up email and password!");
-    // }
+
 }
 
 
 void signinpage::onReadyRead()
 {
-    //connect(ssocket, &QTcpSocket::readyRead, this, &signinpage::onReadyRead);
     QByteArray data = ssocket->readAll();
     QString response(data);
 
@@ -92,7 +80,5 @@ void signinpage::onReadyRead()
 
 void signinpage::onError(QAbstractSocket::SocketError socketError)
 {
-    // connect(ssocket, QOverload<QAbstractSocket::SocketError>::of(&QAbstractSocket::errorOccurred),
-    //         this, &signinpage::onError);
     qDebug() << "Socket error:" << ssocket->errorString();
 }

@@ -24,6 +24,7 @@ public:
     QPushButton *sell;
     QPushButton *buy;
     QPushButton *pushButton_2;
+    QPushButton *createwallet;
 
     void setupUi(QDialog *accountpage)
     {
@@ -45,6 +46,9 @@ public:
         pushButton_2 = new QPushButton(accountpage);
         pushButton_2->setObjectName("pushButton_2");
         pushButton_2->setGeometry(QRect(540, 330, 101, 31));
+        createwallet = new QPushButton(accountpage);
+        createwallet->setObjectName("createwallet");
+        createwallet->setGeometry(QRect(250, 60, 111, 31));
 
         retranslateUi(accountpage);
 
@@ -59,6 +63,7 @@ public:
         sell->setText(QCoreApplication::translate("accountpage", " sell cryptocurrency", nullptr));
         buy->setText(QCoreApplication::translate("accountpage", "buy cryptocurrency", nullptr));
         pushButton_2->setText(QCoreApplication::translate("accountpage", "log out", nullptr));
+        createwallet->setText(QCoreApplication::translate("accountpage", "create wallet", nullptr));
     } // retranslateUi
 
 };
