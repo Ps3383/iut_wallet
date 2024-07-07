@@ -1,7 +1,4 @@
-#include "wallet.h"
+#include "Wallet.h"
 
-Wallet::Wallet(QWidget *parent)
-    : QMainWindow(parent)
-{}
-
-Wallet::~Wallet() {}
+Wallet::Wallet(std::string _email) : email(_email) {}
+Wallet::Wallet(){}

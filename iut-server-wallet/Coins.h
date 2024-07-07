@@ -5,6 +5,7 @@
 #include <unordered_set>
 #include <QObject>
 #include <QtNetwork>
+#include <QDebug>
 
 class CoinGeckoAPI : public QObject {
     Q_OBJECT

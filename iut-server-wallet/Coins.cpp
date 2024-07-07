@@ -5,7 +5,7 @@
 #include <unordered_set>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QDebug>
+//#include <QDebug>
 
 std::unordered_set<std::string> Coin::usedAddresses;
 
