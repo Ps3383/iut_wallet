@@ -49,14 +49,12 @@ TON::TON() {
 }
 
 void fetchCoinPricesFromAPI() {
-    // This function should fetch prices from an actual API.
-    // For now, we will just simulate this with some example values.
-    BTCPrice = 30000; // Example price for BTC
-    ETHPrice = 2000;  // Example price for ETH
-    TONPrice = 5;     // Example price for TON
 
-    // In a real implementation, you would use a library like cURL or a HTTP client
-    // to fetch the prices from a cryptocurrency API.
+  // Example price for COINS
+    BTCPrice = 30000;
+    ETHPrice = 2000;
+    TONPrice = 5;
+
 }
 
 CoinGeckoAPI::CoinGeckoAPI(QObject *parent) : QObject(parent) {
