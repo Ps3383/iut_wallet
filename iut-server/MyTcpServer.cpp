@@ -25,26 +25,59 @@ void MyTcpServer::onReadyRead() {
     QJsonObject json = doc.object();
 	qDebug() << "Received JSON:" << doc.toJson(QJsonDocument::Indented);
 
-    QString email = json["email"].toString();
-    QString password = json["password"].toString();
-    QString name = json["name"].toString();
-    QString address = json["address"].toString();
-    QString phoneNumber = json["phoneNumber"].toString();
 
-    QSqlQuery query;
-    query.prepare("INSERT INTO users (email, password, name, address, phoneNumber) VALUES (:email, :password, :name, :address, :phoneNumber)");
-    query.bindValue(":email", email);
-    query.bindValue(":password", password);
-    query.bindValue(":name", name);
-    query.bindValue(":address", address);
-    query.bindValue(":phoneNumber", phoneNumber);
+    QString type = json["type"].toString();
 
-    if (!query.exec()) {
-        qDebug() << "Insert error:" << query.lastError().text();
-        socket->write("Error");
-    } else {
-		qDebug() << "Data inserted successfully";
-        socket->write("Success");
+    if(type=="signup"){
+        QString email = json["email"].toString();
+        QString password = json["password"].toString();
+        QString name = json["name"].toString();
+        QString address = json["address"].toString();
+        QString phoneNumber = json["phoneNumber"].toString();
+
+        QSqlQuery query;
+        query.prepare("INSERT INTO users (email, password, name, address, phoneNumber) VALUES (:email, :password, :name, :address, :phoneNumber)");
+        query.bindValue(":email", email);
+        query.bindValue(":password", password);
+        query.bindValue(":name", name);
+        query.bindValue(":address", address);
+        query.bindValue(":phoneNumber", phoneNumber);
+
+        if (!query.exec()) {
+            qDebug() << "Insert error:" << query.lastError().text();
+            socket->write("Error");
+        }
+        else {
+            qDebug() << "Data inserted successfully";
+            socket->write("Success");
+        }
+    }
+    else if (type == "signin") {
+        QString email = json["email"].toString();
+        QString password = json["password"].toString();
+
+        QSqlQuery query;
+        query.prepare("SELECT * FROM users WHERE email = :email AND password = :password");
+        query.bindValue(":email", email);
+        query.bindValue(":password", password);
+        if (!query.exec()) {
+            qDebug() << "Select error:" << query.lastError().text();
+            socket->write("Error");
+        } else {
+            if (query.next()) {
+                qDebug() << "User exists";
+                socket->write("User exists");
+            } else {
+                qDebug() << "Invalid credentials";
+                socket->write("Invalid credentials");
+            }
+        }
+    }
+
+
+    else {
+        qDebug() << "Unknown request type";
+        socket->write("Unknown request type");
     }
 
     socket->flush();

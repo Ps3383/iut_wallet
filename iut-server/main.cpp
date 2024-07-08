@@ -19,5 +19,8 @@ int main(int argc, char *argv[])
     } else {
         qDebug() << "Server started!";
     }
+    server.onNewConnection();
+    server.onReadyRead();
+
     return a.exec();
 }

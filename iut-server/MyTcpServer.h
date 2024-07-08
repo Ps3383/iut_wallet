@@ -14,7 +14,7 @@ class MyTcpServer : public QTcpServer {
 public:
     MyTcpServer(QObject* parent = nullptr);
 
-protected slots:
+public slots:
     void onNewConnection();
     void onReadyRead();
 
