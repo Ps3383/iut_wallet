@@ -43,9 +43,9 @@ public:
 };
 
 // Global variables for coin prices
-extern float BTCPrice;
-extern float ETHPrice;
-extern float TRONPrice;
+// extern float BTCPrice;
+// extern float ETHPrice;
+// extern float TRONPrice;
 
 // void fetchCoinPricesFromAPI(const QString & coinID);
 

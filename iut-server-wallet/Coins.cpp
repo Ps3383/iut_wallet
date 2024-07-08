@@ -1,17 +1,18 @@
 #include "Coins.h"
+#include "API.h"
 #include <random>
 #include <ctime>
-//#include <iostream>
 #include <unordered_set>
 #include <QJsonDocument>
 #include <QJsonObject>
-//#include <QDebug>
+#include <QDebug>
+#include <QMap>
 
 std::unordered_set<std::string> Coin::usedAddresses;
 
-float BTCPrice = 0;
-float ETHPrice = 0;
-float TRONPrice = 0;
+// float BTCPrice = 0;
+// float ETHPrice = 0;
+// float TRONPrice = 0;
 
 Coin::Coin() {
     address = generateUniqueAddress();
@@ -34,18 +35,21 @@ std::string Coin::generateUniqueAddress() {
 }
 
 BTC::BTC() {
-    price = BTCPrice;
+    price = prices["bitcoin"];
     address += "BTC";
+    qDebug()<< "BTCprice in constructor = " <<prices["bitcoin"];
 }
 
 ETH::ETH() {
-    price = ETHPrice;
+    price = prices["ethereum"];
     address += "ETH";
+    qDebug()<< "ETHprice in constructor = " <<prices["ethereum"];
 }
 
 TRON::TRON() {
-    price = TRONPrice;
+    price = prices["tron"];
     address += "TRON";
+    qDebug()<< "TRONprice in constructor = " <<prices["tron"];
 }
 
 // void fetchCoinPricesFromAPI() {

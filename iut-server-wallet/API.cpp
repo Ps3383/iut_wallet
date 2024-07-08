@@ -1,27 +1,27 @@
 #include <API.h>
-#include "Coins.h"
+
+QMap<QString, float> prices;
 
 // Constructor implementation
 CoinGeckoAPI::CoinGeckoAPI(QObject *parent) : QObject(parent) {
     manager = new QNetworkAccessManager(this);
     connect(manager, &QNetworkAccessManager::finished, this, &CoinGeckoAPI::onResult);
-    connect(this, &CoinGeckoAPI::priceUpdated, this, &CoinGeckoAPI::updatePrices);
+    // connect(this, &CoinGeckoAPI::priceUpdated, this, &CoinGeckoAPI::updatePrices);
 }
-
-void CoinGeckoAPI::updatePrices(const QString &coinId, float price) {
-    if (coinId == "bitcoin") {
-        BTCPrice = price;
-    } else if (coinId == "ethereum") {
-        ETHPrice = price;
-    } else if (coinId == "tron") {
-        TRONPrice = price;
-    }
-    qDebug() << coinId << "price updated to:" << price;
-}
-
 // CoinGeckoAPI::CoinGeckoAPI(QObject *parent) : QObject(parent) {
 //     manager = new QNetworkAccessManager(this);
 //     connect(manager, &QNetworkAccessManager::finished, this, &CoinGeckoAPI::onResult);
+// }
+
+// void CoinGeckoAPI::updatePrices(const QString &coinId, float price) {
+//     if (coinId == "bitcoin") {
+//         BTCPrice = price;
+//     } else if (coinId == "ethereum") {
+//         ETHPrice = price;
+//     } else if (coinId == "tron") {
+//         TRONPrice = price;
+//     }
+//     qDebug() << coinId << "price updated to:" << price;
 // }
 
 void CoinGeckoAPI::getCoinDetails(const QString &coinId) {
@@ -36,34 +36,6 @@ void CoinGeckoAPI::getCurrentPrice(const QString &coinId) {
     manager->get(request);
 }
 
-// void CoinGeckoAPI::onResult(QNetworkReply *reply) {
-//     if (reply->error() == QNetworkReply::NoError) {
-//         QByteArray responseData = reply->readAll();
-//         QJsonDocument jsonResponse = QJsonDocument::fromJson(responseData);
-//         QJsonObject jsonObject = jsonResponse.object();
-
-//         QStringList coinIds = {"bitcoin", "ethereum", "notcoin", "tron", "solana"};
-//         for (const QString &coinId : coinIds) {
-//             if (jsonObject.contains(coinId) && jsonObject[coinId].isObject()) {
-//                 QJsonObject coinObject = jsonObject[coinId].toObject();
-//                 if (coinObject.contains("usd") && coinObject["usd"].isDouble()) {
-//                     double price = coinObject["usd"].toDouble();
-//                     // qDebug() << coinId << "price in USD:" << price;
-
-//                     float priceInFloat = static_cast<float>(price);
-//                     // qDebug() << coinId << "price as float:" << priceInFloat;
-//                     prices[coinId] = priceInFloat;
-//                     qDebug()<< coinId << "price is save on map:" << prices[coinId];
-//                     emit priceUpdated(coinId, priceInFloat);
-
-//                 }
-//             }
-//         }
-//     } else {
-//         qDebug() << "Error:" << reply->errorString();
-//     }
-//     reply->deleteLater();
-// }
 void CoinGeckoAPI::onResult(QNetworkReply *reply) {
     if (reply->error() == QNetworkReply::NoError) {
         QByteArray responseData = reply->readAll();
@@ -78,7 +50,8 @@ void CoinGeckoAPI::onResult(QNetworkReply *reply) {
                     double price = coinObject["usd"].toDouble();
                     float priceInFloat = static_cast<float>(price);
                     prices[coinId] = priceInFloat;
-                    emit priceUpdated(coinId, priceInFloat);
+                    qDebug()<< coinId << "price save on map:" << prices[coinId];
+                    // emit priceUpdated(coinId, priceInFloat);
                 }
             }
         }

@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QtNetwork>
+#include <QMap>
+#include <QString>
 
 // class CoinGeckoAPI : public QObject {
 //     Q_OBJECT
@@ -26,6 +28,7 @@
 //     QMap<QString, float> prices;
 
 // };
+extern QMap<QString, float> prices;
 
 class CoinGeckoAPI : public QObject {
     Q_OBJECT
@@ -36,16 +39,17 @@ public:
     void getCurrentPrice(const QString &coinId);
     void fetchCoinPricesFromAPI();
 
-signals:
-    void priceUpdated(const QString &coinId, float price);
+
+// signals:
+    // void priceUpdated(const QString &coinId, float price);
 
 private slots:
     void onResult(QNetworkReply *reply);
-    void updatePrices(const QString &coinId, float price);
+    // void updatePrices(const QString &coinId, float price);
 
 private:
     QNetworkAccessManager *manager;
-    QMap<QString, float> prices;
+
 };
 
 #endif // API_H
