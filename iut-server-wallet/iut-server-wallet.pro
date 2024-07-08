@@ -1,5 +1,7 @@
 QT       += core gui
 QT       += network
+QT       += core sql
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
@@ -11,12 +13,15 @@ CONFIG += c++17
 SOURCES += \
     API.cpp \
     Coins.cpp \
+    DatabaseManager.cpp \
     main.cpp \
     wallet.cpp
 
 HEADERS += \
     API.h \
     Coins.h \
+    DatabaseManager.h \
+    HashArray.h \
     wallet.h
 
 # Default rules for deployment.

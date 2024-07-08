@@ -14,7 +14,7 @@ std::unordered_set<std::string> Coin::usedAddresses;
 // float ETHPrice = 0;
 // float TRONPrice = 0;
 
-Coin::Coin() {
+Coin::Coin() : balance(0.0f) {
     address = generateUniqueAddress();
 }
 
