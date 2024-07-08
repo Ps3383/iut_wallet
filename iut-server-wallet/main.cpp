@@ -5,53 +5,26 @@
 
 #include <QThread>
 
-// int main(int argc, char *argv[]) {
-//     QCoreApplication a(argc, argv);
-
-//     CoinGeckoAPI api;
-
-//     // Fetch prices
-//     api.fetchCoinPricesFromAPI();
-
-//     // Print the prices (for testing)
-//     qDebug() << "BTCPrice:" << BTCPrice;
-//     qDebug() << "ETHPrice:" << ETHPrice;
-//     qDebug() << "TRONPrice:" << TRONPrice;
-
-//     QThread::msleep(2000);
-
-//     qDebug() << "BTCPrice2:" << BTCPrice;
-//     qDebug() << "ETHPrice2:" << ETHPrice;
-//     qDebug() << "TRONPrice2:" << TRONPrice;
-
-//     return a.exec();
-// }
-
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    // Fetch the latest coin prices from the API
-
-    //fetchCoinPricesFromAPI();
-
     CoinGeckoAPI api;
-
+    api.fetchCoinPricesFromAPI();
     //add
-    QObject::connect(&api, &CoinGeckoAPI::priceUpdated, [](const QString &coinId, float price) {
-        qDebug() << "Price of" << coinId << "updated to" << price;
-    });
+    // QObject::connect(&api, &CoinGeckoAPI::priceUpdated, [](const QString &coinId, float price) {
+    //     qDebug() << "Price of" << coinId << "updated to" << price;
+    // });
 
 
     // api.getCoinDetails("bitcoin");
-    api.getCurrentPrice("ethereum");
-    api.getCurrentPrice("bitcoin");
-    api.getCurrentPrice("tron");
-    api.getCurrentPrice("notcoin");
-    api.getCurrentPrice("solana");
-    api.fetchCoinPricesFromAPI();
-    QThread::msleep(3000);
-
+    // api.getCurrentPrice("ethereum");
+    // api.getCurrentPrice("bitcoin");
+    // api.getCurrentPrice("tron");
+    // api.getCurrentPrice("notcoin");
+    // api.getCurrentPrice("solana");
+    // api.fetchCoinPricesFromAPI();
+    QThread::msleep(2000);
 
     Wallet myWallet("mahdi@gmail.com");
 
