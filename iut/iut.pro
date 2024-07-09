@@ -10,6 +10,10 @@ CONFIG += c++17
 
 SOURCES += \
     accountpage.cpp \
+    changeaddress.cpp \
+    changename.cpp \
+    changepass.cpp \
+    changephone.cpp \
     createwallet.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -19,6 +23,10 @@ SOURCES += \
 
 HEADERS += \
     accountpage.h \
+    changeaddress.h \
+    changename.h \
+    changepass.h \
+    changephone.h \
     createwallet.h \
     mainwindow.h \
     sighuppage.h \
@@ -27,6 +35,10 @@ HEADERS += \
 
 FORMS += \
     accountpage.ui \
+    changeaddress.ui \
+    changename.ui \
+    changepass.ui \
+    changephone.ui \
     createwallet.ui \
     mainwindow.ui \
     sighuppage.ui \

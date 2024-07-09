@@ -23,11 +23,18 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void sendUser( User user);
+    bool changePassword( QString email,  QString newPassword);
+    void changePhoneNumber( QString email,  QString newPhoneNumber);
+    void changeAddress( QString email,  QString newAddress);
+    void changeName( QString email,  QString newName);
 protected slots:
     void onReadyRead() {
         QByteArray data = socket->readAll();
         qDebug() << "Server response:" << data;
     }
+    void processServerResponse();
+    //void processServerResponsee();
+
 private slots:
     void on_pushButton_2_clicked();
 

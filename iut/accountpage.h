@@ -20,6 +20,15 @@ private slots:
 
     void on_createwallet_clicked();
 
+    void on_change_clicked();
+
+
+    void on_changeph_clicked();
+
+    void on_changea_clicked();
+
+    void on_changen_clicked();
+
 private:
     Ui::accountpage *ui;
 };

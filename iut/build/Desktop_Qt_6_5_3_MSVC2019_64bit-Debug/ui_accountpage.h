@@ -25,6 +25,10 @@ public:
     QPushButton *buy;
     QPushButton *pushButton_2;
     QPushButton *createwallet;
+    QPushButton *change;
+    QPushButton *changeph;
+    QPushButton *changea;
+    QPushButton *changen;
 
     void setupUi(QDialog *accountpage)
     {
@@ -33,10 +37,10 @@ public:
         accountpage->resize(777, 463);
         seeprices = new QPushButton(accountpage);
         seeprices->setObjectName("seeprices");
-        seeprices->setGeometry(QRect(70, 60, 91, 31));
+        seeprices->setGeometry(QRect(70, 60, 131, 41));
         pushButton = new QPushButton(accountpage);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(70, 130, 91, 31));
+        pushButton->setGeometry(QRect(70, 130, 131, 41));
         sell = new QPushButton(accountpage);
         sell->setObjectName("sell");
         sell->setGeometry(QRect(70, 200, 131, 41));
@@ -48,7 +52,19 @@ public:
         pushButton_2->setGeometry(QRect(540, 330, 101, 31));
         createwallet = new QPushButton(accountpage);
         createwallet->setObjectName("createwallet");
-        createwallet->setGeometry(QRect(250, 60, 111, 31));
+        createwallet->setGeometry(QRect(250, 60, 131, 41));
+        change = new QPushButton(accountpage);
+        change->setObjectName("change");
+        change->setGeometry(QRect(490, 70, 121, 31));
+        changeph = new QPushButton(accountpage);
+        changeph->setObjectName("changeph");
+        changeph->setGeometry(QRect(490, 120, 121, 31));
+        changea = new QPushButton(accountpage);
+        changea->setObjectName("changea");
+        changea->setGeometry(QRect(490, 170, 121, 31));
+        changen = new QPushButton(accountpage);
+        changen->setObjectName("changen");
+        changen->setGeometry(QRect(490, 220, 121, 31));
 
         retranslateUi(accountpage);
 
@@ -64,6 +80,10 @@ public:
         buy->setText(QCoreApplication::translate("accountpage", "buy cryptocurrency", nullptr));
         pushButton_2->setText(QCoreApplication::translate("accountpage", "log out", nullptr));
         createwallet->setText(QCoreApplication::translate("accountpage", "create wallet", nullptr));
+        change->setText(QCoreApplication::translate("accountpage", "change passowrd", nullptr));
+        changeph->setText(QCoreApplication::translate("accountpage", "change phone", nullptr));
+        changea->setText(QCoreApplication::translate("accountpage", "change address", nullptr));
+        changen->setText(QCoreApplication::translate("accountpage", "change name", nullptr));
     } // retranslateUi
 
 };

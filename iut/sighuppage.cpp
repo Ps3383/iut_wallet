@@ -34,7 +34,6 @@ void sighuppage::on_regi_clicked()
 
     if (!em.isEmpty() && !ps.isEmpty()) {
         User user1(em, ps, na, adr, tel);
-        QMessageBox::information(this, "Sign up", "Successfully added");
 
         // دسترسی به شیء MainWindow و فراخوانی sendUser
         MainWindow *mainWindow = qobject_cast<MainWindow*>(parent());

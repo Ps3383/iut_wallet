@@ -3,7 +3,9 @@
 
 #include <QDialog>
 #include <QTcpSocket>
-
+#include<QString>
+extern QString em;
+extern QString ps;
 namespace Ui {
 class signinpage;
 }

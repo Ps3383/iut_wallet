@@ -24,8 +24,8 @@ void signinpage::on_pushButton_2_clicked()
     b->show();
 }
 
-QString em ;
-QString ps;
+QString em="";
+QString ps="";
 void signinpage::on_login_clicked()
 {
     ssocket = new QTcpSocket(this);

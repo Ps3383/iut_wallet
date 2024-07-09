@@ -35,6 +35,48 @@ void MyTcpServer::onReadyRead() {
         QString address = json["address"].toString();
         QString phoneNumber = json["phoneNumber"].toString();
 
+        // Check for duplicate email
+        QSqlQuery checkQuery;
+        checkQuery.prepare("SELECT COUNT(*) FROM users WHERE email = :email");
+        checkQuery.bindValue(":email", email);
+
+        if (!checkQuery.exec()) {
+            qDebug() << "Check query error:" << checkQuery.lastError().text();
+            socket->write("Error");
+            socket->flush();
+            socket->close();
+            return;
+        }
+
+        checkQuery.next();
+        if (checkQuery.value(0).toInt() > 0) {
+            qDebug() << "Email already exists";
+            socket->write("Email already exists");
+            socket->flush();
+            socket->close();
+            return;
+        }
+
+        // Check for duplicate password
+        checkQuery.prepare("SELECT COUNT(*) FROM users WHERE password = :password");
+        checkQuery.bindValue(":password", password);
+
+        if (!checkQuery.exec()) {
+            qDebug() << "Check query error:" << checkQuery.lastError().text();
+            socket->write("Error");
+            socket->flush();
+            socket->close();
+            return;
+        }
+
+        checkQuery.next();
+        if (checkQuery.value(0).toInt() > 0) {
+            qDebug() << "Password already exists";
+            socket->write("Password already exists");
+            socket->flush();
+            socket->close();
+            return;
+        }
         QSqlQuery query;
         query.prepare("INSERT INTO users (email, password, name, address, phoneNumber) VALUES (:email, :password, :name, :address, :phoneNumber)");
         query.bindValue(":email", email);
@@ -74,7 +116,102 @@ void MyTcpServer::onReadyRead() {
         }
     }
 
+    else if (type == "change_password") {
+        QString email = json["email"].toString();
+        QString newPassword = json["new_password"].toString();
 
+
+        // // Check for duplicate password
+        // QSqlQuery checkQuery;
+
+        // checkQuery.prepare("SELECT COUNT(*) FROM users WHERE password = :password");
+        // checkQuery.bindValue(":password", newPassword);
+
+        // if (!checkQuery.exec()) {
+        //     qDebug() << "Check query error:" << checkQuery.lastError().text();
+        //     socket->write("Error");
+        //     socket->flush();
+        //     socket->close();
+        //     return;
+        // }
+
+        // checkQuery.next();
+        // if (checkQuery.value(0).toInt() > 0) {
+        //     qDebug() << "pass exists";
+        //     socket->write("pass exists");
+        //     socket->flush();
+        //     socket->close();
+        //     return;
+        // }
+
+        QSqlQuery query;
+        query.prepare("UPDATE users SET password = :new_password WHERE email = :email");
+        query.bindValue(":email", email);
+        query.bindValue(":new_password", newPassword);
+
+        if (!query.exec()) {
+            qDebug() << "Password update error:" << query.lastError().text();
+            socket->write("Error");
+        } else {
+            qDebug() << "Password updated successfully";
+            socket->write("Success");
+        }
+    }
+
+
+
+    else if (type == "change_phone_number") {
+        QString email = json["email"].toString();
+        QString newPhoneNumber = json["new_phone_number"].toString();
+
+        QSqlQuery query;
+        query.prepare("UPDATE users SET phoneNumber = :phoneNumber WHERE email = :email");
+        query.bindValue(":phoneNumber", newPhoneNumber);
+        query.bindValue(":email", email);
+
+        if (!query.exec()) {
+            qDebug() << "Update error:" << query.lastError().text();
+            socket->write("Error");
+        } else {
+            qDebug() << "Phone number updated successfully";
+            socket->write("Success");
+        }
+    }
+
+    else if (type == "change_address") {
+        QString email = json["email"].toString();
+        QString newAddress = json["new_address"].toString();
+
+        QSqlQuery query;
+        query.prepare("UPDATE users SET address = :address WHERE email = :email");
+        query.bindValue(":address", newAddress);
+        query.bindValue(":email", email);
+
+        if (!query.exec()) {
+            qDebug() << "Update error:" << query.lastError().text();
+            socket->write("Error");
+        } else {
+            qDebug() << "Address updated successfully";
+            socket->write("Success");
+        }
+    }
+    else if (type == "change_name") {
+        QString email = json["email"].toString();
+        QString newName = json["new_name"].toString();
+
+        QSqlQuery query;
+        query.prepare("UPDATE users SET name = :name WHERE email = :email");
+        query.bindValue(":name", newName);
+        query.bindValue(":email", email);
+
+        if (!query.exec()) {
+            qDebug() << "Update error:" << query.lastError().text();
+            socket->write("Error");
+        } else {
+            qDebug() << "Name updated successfully";
+            socket->write("Success");
+        }
+    }
     else {
         qDebug() << "Unknown request type";
         socket->write("Unknown request type");

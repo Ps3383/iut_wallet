@@ -38,13 +38,13 @@ public:
         centralwidget->setObjectName("centralwidget");
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(150, 90, 131, 41));
+        pushButton->setGeometry(QRect(150, 110, 131, 41));
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(330, 90, 141, 41));
+        pushButton_2->setGeometry(QRect(340, 110, 141, 41));
         pushButton_3 = new QPushButton(centralwidget);
         pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setGeometry(QRect(620, 270, 80, 24));
+        pushButton_3->setGeometry(QRect(450, 250, 80, 24));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
