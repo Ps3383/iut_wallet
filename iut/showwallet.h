@@ -21,6 +21,14 @@ private slots:
 
     void on_shw_clicked();
 
+    void on_buy_clicked();
+
+    void on_sell_clicked();
+
+    void on_increase_clicked();
+
+    void on_decrease_clicked();
+
 private:
     Ui::showwallet *ui;
 };

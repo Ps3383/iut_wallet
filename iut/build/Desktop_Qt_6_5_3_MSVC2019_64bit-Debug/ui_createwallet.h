@@ -23,8 +23,6 @@ class Ui_createwallet
 public:
     QLabel *label;
     QLineEdit *lineEdit;
-    QLabel *label_2;
-    QLineEdit *lineEdit_2;
     QPushButton *create;
     QPushButton *pushButton_2;
 
@@ -39,12 +37,6 @@ public:
         lineEdit = new QLineEdit(createwallet);
         lineEdit->setObjectName("lineEdit");
         lineEdit->setGeometry(QRect(190, 90, 113, 24));
-        label_2 = new QLabel(createwallet);
-        label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(90, 140, 71, 21));
-        lineEdit_2 = new QLineEdit(createwallet);
-        lineEdit_2->setObjectName("lineEdit_2");
-        lineEdit_2->setGeometry(QRect(190, 140, 113, 24));
         create = new QPushButton(createwallet);
         create->setObjectName("create");
         create->setGeometry(QRect(400, 240, 80, 24));
@@ -61,7 +53,6 @@ public:
     {
         createwallet->setWindowTitle(QCoreApplication::translate("createwallet", "Dialog", nullptr));
         label->setText(QCoreApplication::translate("createwallet", "wallet name", nullptr));
-        label_2->setText(QCoreApplication::translate("createwallet", "email", nullptr));
         create->setText(QCoreApplication::translate("createwallet", "create", nullptr));
         pushButton_2->setText(QCoreApplication::translate("createwallet", "back", nullptr));
     } // retranslateUi

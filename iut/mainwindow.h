@@ -27,6 +27,10 @@ public:
     void changePhoneNumber( QString email,  QString newPhoneNumber);
     void changeAddress( QString email,  QString newAddress);
     void changeName( QString email,  QString newName);
+    void addWallet( QString email,  QString walletName);
+    void showwallet( QString email,  QString walletName);
+    QString getWalletInfo( QString email,  QString walletName);
+
 protected slots:
     void onReadyRead() {
         QByteArray data = socket->readAll();

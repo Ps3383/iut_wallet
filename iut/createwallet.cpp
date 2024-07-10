@@ -1,6 +1,9 @@
 #include "createwallet.h"
 #include "ui_createwallet.h"
 #include"accountpage.h"
+#include"mainwindow.h"
+#include"signinpage.h"
+#include<QMessageBox>
 
 createwallet::createwallet(QWidget *parent)
     : QDialog(parent)
@@ -24,6 +27,13 @@ void createwallet::on_pushButton_2_clicked()
 
 void createwallet::on_create_clicked()
 {
-    //create wallet from server
+    QString walname = ui->lineEdit->text();
+    MainWindow *mainWindow = qobject_cast<MainWindow*>(parent());
+
+    mainWindow->addWallet(em,walname);
+    QMessageBox::information(this, "create wallet", "Successfully created!");
+    hide();
+    accountpage *e = new accountpage(this);
+    e->show();
 }
 

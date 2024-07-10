@@ -16,10 +16,10 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>60</y>
-     <width>461</width>
-     <height>291</height>
+     <x>40</x>
+     <y>30</y>
+     <width>691</width>
+     <height>401</height>
     </rect>
    </property>
    <property name="title">
@@ -72,6 +72,68 @@
     </property>
     <property name="text">
      <string>show</string>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="textBrowser">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>40</y>
+      <width>311</width>
+      <height>341</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="buy">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>240</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>buy</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="increase">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>240</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>increase</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="sell">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>300</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>sell</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="decrease">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>300</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>decrease</string>
     </property>
    </widget>
   </widget>

@@ -2,10 +2,12 @@
 #include "ui_mainwindow.h"
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QJsonArray>
 #include"signinpage.h"
 #include <QMessageBox>
 #include"accountpage.h"
 #include <QDebug>
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -210,3 +212,119 @@ void MainWindow::changeName( QString email,  QString newName)
     socket->close();
     socket->deleteLater();
 }
+
+void MainWindow::addWallet( QString email,  QString walletName)
+{
+    QTcpSocket* socket = new QTcpSocket(this);
+
+    QJsonObject json;
+    json["type"] = "addWallet";
+    json["email"] = email;
+    json["wallet_name"] = walletName;
+
+    QJsonDocument doc(json);
+    QByteArray data = doc.toJson();
+
+    socket->connectToHost("127.0.0.1", 1234);
+
+    if (socket->waitForConnected(3000)) {
+        socket->write(data);
+        socket->flush();
+        qDebug() << "Add wallet request sent to server";
+    }
+}
+
+void MainWindow::showwallet( QString email,  QString walletName)
+{
+    QTcpSocket* socket = new QTcpSocket(this);
+
+    QJsonObject json;
+    json["type"] = "getWallet";
+    json["email"] = email;
+    json["wallet_name"] = walletName;
+
+    QJsonDocument doc(json);
+    QByteArray data = doc.toJson();
+
+    socket->connectToHost("127.0.0.1", 1234);
+
+    if (socket->waitForConnected(3000)) {
+        socket->write(data);
+        socket->flush();
+        qDebug() << "try to show wallet";
+    }
+}
+
+
+QString MainWindow::getWalletInfo(QString email, QString walletName)
+{
+    QString ss;
+    QTcpSocket* socket = new QTcpSocket(this);
+
+    QJsonObject json;
+    json["type"] = "getWallet";
+    json["email"] = email;
+    json["walletName"] = walletName;
+
+    QJsonDocument doc(json);
+    QByteArray data = doc.toJson();
+
+    socket->connectToHost("127.0.0.1", 1234);
+
+    if (socket->waitForConnected(3000)) {
+        socket->write(data);
+        socket->flush();
+        qDebug() << "Wallet info request sent to server";
+
+        QEventLoop loop;
+        connect(socket, &QTcpSocket::readyRead, [this, socket, &ss, &loop]() {
+            QByteArray response = socket->readAll();
+            qDebug() << "Received response from server:" << response;
+
+            QJsonDocument doc = QJsonDocument::fromJson(response);
+            QJsonObject json = doc.object();
+            QString info;
+
+            if (json["status"] == "success") {
+                info += "Email: " + json["email"].toString() + "\n";
+                info += "BTC Balance: " + QString::number(json["btc_balance"].toInt()) + "\n";
+                info += "BTC Price: " + QString::number(json["btc_price"].toInt()) + "\n";
+                info += "BTC Address: " + json["btc_address"].toString() + "\n";
+                info += "ETH Balance: " + QString::number(json["eth_balance"].toInt()) + "\n";
+                info += "ETH Price: " + QString::number(json["eth_price"].toInt()) + "\n";
+                info += "ETH Address: " + json["eth_address"].toString() + "\n";
+                info += "TRX Balance: " + QString::number(json["trx_balance"].toInt()) + "\n";
+                info += "TRX Price: " + QString::number(json["trx_price"].toInt()) + "\n";
+                info += "TRX Address: " + json["trx_address"].toString() + "\n";
+                info += "USDT: " + QString::number(json["usdt"].toDouble()) + "\n";
+
+                QJsonArray wordsArray = json["words"].toArray();
+                info += "Words: ";
+                for (int i = 0; i < wordsArray.size(); ++i) {
+                    info += wordsArray[i].toString() + " ";
+                }
+                info += "\n";
+                ss = info;
+            }
+
+            socket->close();
+            socket->deleteLater();
+            loop.quit();
+        });
+
+        loop.exec(); // Wait here until readyRead() is called
+    } else {
+        qDebug() << "Connection failed!";
+        socket->deleteLater();
+        return "null";
+    }
+
+    return ss;
+
+}
+
+
+
+
+
+
