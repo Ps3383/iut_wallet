@@ -1,5 +1,5 @@
 #include "MyTcpServer.h"
-#include"Database.h"
+#include "Database.h"
 MyTcpServer::MyTcpServer(QObject* parent) : QTcpServer(parent) {
     connect(this, &QTcpServer::newConnection, this, &MyTcpServer::onNewConnection);
 }
@@ -27,7 +27,7 @@ void MyTcpServer::onReadyRead() {
 
 
     QString type = json["type"].toString();
-
+    //for signaUP users
     if(type=="signup"){
 
         QString email = json["email"].toString();
@@ -37,6 +37,7 @@ void MyTcpServer::onReadyRead() {
         QString phoneNumber = json["phoneNumber"].toString();
 
         // Check for duplicate email
+	//open and initial users.db database
         initializeUserDatabase();
         QSqlQuery checkQuery;
         checkQuery.prepare("SELECT COUNT(*) FROM users WHERE email = :email");
@@ -96,10 +97,12 @@ void MyTcpServer::onReadyRead() {
             socket->write("Success");
         }
     }
+	    //for signing users
     else if (type == "signin") {
         QString email = json["email"].toString();
         QString password = json["password"].toString();
-        initializeUserDatabase();
+        //open and initial users.db database
+	initializeUserDatabase();
         QSqlQuery query;
         query.prepare("SELECT * FROM users WHERE email = :email AND password = :password");
         query.bindValue(":email", email);
@@ -117,7 +120,7 @@ void MyTcpServer::onReadyRead() {
             }
         }
     }
-
+    //users can change their password here
     else if (type == "change_password") {
         QString email = json["email"].toString();
         QString newPassword = json["new_password"].toString();
@@ -145,6 +148,7 @@ void MyTcpServer::onReadyRead() {
         //     socket->close();
         //     return;
         // }
+	//open and initial users.db database 
         initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET password = :new_password WHERE email = :email");
@@ -165,8 +169,9 @@ void MyTcpServer::onReadyRead() {
 
     else if (type == "change_phone_number") {
         QString email = json["email"].toString();
-        QString newPhoneNumber = json["new_phone_number"].toString();
-        initializeUserDatabase();
+	QString newPhoneNumber = json["new_phone_number"].toString();
+        //open and initial users.db database
+	initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET phoneNumber = :phoneNumber WHERE email = :email");
         query.bindValue(":phoneNumber", newPhoneNumber);
@@ -184,7 +189,8 @@ void MyTcpServer::onReadyRead() {
     else if (type == "change_address") {
         QString email = json["email"].toString();
         QString newAddress = json["new_address"].toString();
-initializeUserDatabase();
+        //open and initial users.db database
+	initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET address = :address WHERE email = :email");
         query.bindValue(":address", newAddress);
@@ -201,7 +207,8 @@ initializeUserDatabase();
     else if (type == "change_name") {
         QString email = json["email"].toString();
         QString newName = json["new_name"].toString();
-initializeUserDatabase();
+        //open and initial users.db database
+	initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET name = :name WHERE email = :email");
         query.bindValue(":name", newName);
@@ -248,6 +255,7 @@ initializeUserDatabase();
         }
     }
     else if(type == "transactions"){
+	//open and initial transactions.db database
         initializeTransactionsDatabase();
         QString transactionType = json.value("sellORbuy").toString();
         QString email = json.value("email").toString();
@@ -278,12 +286,13 @@ initializeUserDatabase();
         }
 
         //***************************************************************add wallet Obj query *******************************************************************
-
+        //open and initial wallets.db database
         DatabaseManager dbManager("wallets.db");
         if (dbManager.isOpen()) {
             dbManager.createTable();
-            QSqlQuery updateQuery; //
+            QSqlQuery updateQuery; //create a new object from QSqlQuery
 
+	    // for buy transaction 
             if (transactionType == "buy") {
                 if(destinationCoin == "btc"){
                     updateQuery.prepare("UPDATE wallets SET btc_balanc = btc_balanc + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
@@ -358,10 +367,6 @@ initializeUserDatabase();
             qDebug() << "Can't open wallets Database: " << query.lastError().text();
         }
     }
-    else if(type == "usdt_increase"){
-
-    }
-
     else {
         qDebug() << "Unknown request type";
         socket->write("Unknown request type");
@@ -404,11 +409,7 @@ initializeUserDatabase();
     // socket->close();
 // }
 // void MyTcpServer::processJsonData(const QJsonObject &json) {
-//     QString email = json["email"].toString();
-//     QString password = json["password"].toString();
-//     QString name = json["name"].toString();
-//     QString address = json["address"].toString();
-//     QString phoneNumber = json["phoneNumber"].toString();
+//
 
 //     QSqlQuery query;
 //     query.prepare("INSERT INTO users (email, password, name, address, phoneNumber) "
