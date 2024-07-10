@@ -255,7 +255,7 @@ void MyTcpServer::onReadyRead() {
         }
     }
     else if(type == "transactions"){
-	//open and initial transactions.db database
+        //open and initial transactions.db database
         initializeTransactionsDatabase();
         QString transactionType = json.value("sellORbuy").toString();
         QString email = json.value("email").toString();
@@ -290,17 +290,46 @@ void MyTcpServer::onReadyRead() {
         DatabaseManager dbManager("wallets.db");
         if (dbManager.isOpen()) {
             dbManager.createTable();
-            QSqlQuery updateQuery; //create a new object from QSqlQuery
-
+            QSqlQuery selectQuery;
+             //create a new object from QSqlQuery
+            QSqlQuery updateQuery;
 	    // for buy transaction 
             if (transactionType == "buy") {
-                if(destinationCoin == "btc"){
+                if (destinationCoin == "btc") {
+                    selectQuery.prepare("SELECT usdt FROM wallets WHERE email = :email");
+                    selectQuery.bindValue(":email", email);
+                    if (selectQuery.exec() && selectQuery.next()) {
+                        float currentUSDT = selectQuery.value(0).toFloat();
+                        if (currentUSDT < sourceAmount) {
+                            qDebug() << "Insufficient USDT balance";
+                            socket->write("Insufficient USDT balance");
+                            return;
+                        }
+                    }
                     updateQuery.prepare("UPDATE wallets SET btc_balanc = btc_balanc + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
-                }
-                else if(destinationCoin == "eth"){
+                } else if (destinationCoin == "eth") {
+                    selectQuery.prepare("SELECT usdt FROM wallets WHERE email = :email");
+                    selectQuery.bindValue(":email", email);
+                    if (selectQuery.exec() && selectQuery.next()) {
+                        float currentUSDT = selectQuery.value(0).toFloat();
+                        if (currentUSDT < sourceAmount) {
+                            qDebug() << "Insufficient USDT balance";
+                            socket->write("Insufficient USDT balance");
+                            return;
+                        }
+                    }
                     updateQuery.prepare("UPDATE wallets SET eth_balanc = eth_balanc + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
-                }
-                else if(destinationCoin == "trx"){
+                } else if (destinationCoin == "trx") {
+                    selectQuery.prepare("SELECT usdt FROM wallets WHERE email = :email");
+                    selectQuery.bindValue(":email", email);
+                    if (selectQuery.exec() && selectQuery.next()) {
+                        float currentUSDT = selectQuery.value(0).toFloat();
+                        if (currentUSDT < sourceAmount) {
+                            qDebug() << "Insufficient USDT balance";
+                            socket->write("Insufficient USDT balance");
+                            return;
+                        }
+                    }
                     updateQuery.prepare("UPDATE wallets SET trx_balanc = trx_balanc + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
                 }
                 updateQuery.bindValue(":destination_amount", destinationAmount);
@@ -315,14 +344,42 @@ void MyTcpServer::onReadyRead() {
                     socket->write("Success");
                 }
             }
-            else if(transactionType == "sell"){
-                if(destinationCoin == "btc"){
+            else if (transactionType == "sell") {
+                if (destinationCoin == "btc") {
+                    selectQuery.prepare("SELECT btc_balanc FROM wallets WHERE email = :email");
+                    selectQuery.bindValue(":email", email);
+                    if (selectQuery.exec() && selectQuery.next()) {
+                        float currentBTC = selectQuery.value(0).toFloat();
+                        if (currentBTC < sourceAmount) {
+                            qDebug() << "Insufficient BTC balance";
+                            socket->write("Insufficient BTC balance");
+                            return;
+                        }
+                    }
                     updateQuery.prepare("UPDATE wallets SET btc_balanc = btc_balanc - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
-                }
-                else if(destinationCoin == "eth"){
+                } else if (destinationCoin == "eth") {
+                    selectQuery.prepare("SELECT eth_balanc FROM wallets WHERE email = :email");
+                    selectQuery.bindValue(":email", email);
+                    if (selectQuery.exec() && selectQuery.next()) {
+                        float currentETH = selectQuery.value(0).toFloat();
+                        if (currentETH < sourceAmount) {
+                            qDebug() << "Insufficient ETH balance";
+                            socket->write("Insufficient ETH balance");
+                            return;
+                        }
+                    }
                     updateQuery.prepare("UPDATE wallets SET eth_balanc = eth_balanc - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
-                }
-                else if(destinationCoin == "trx"){
+                } else if (destinationCoin == "trx") {
+                    selectQuery.prepare("SELECT trx_balanc FROM wallets WHERE email = :email");
+                    selectQuery.bindValue(":email", email);
+                    if (selectQuery.exec() && selectQuery.next()) {
+                        float currentTRX = selectQuery.value(0).toFloat();
+                        if (currentTRX < sourceAmount) {
+                            qDebug() << "Insufficient TRX balance";
+                            socket->write("Insufficient TRX balance");
+                            return;
+                        }
+                    }
                     updateQuery.prepare("UPDATE wallets SET trx_balanc = trx_balanc - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
                 }
                 updateQuery.bindValue(":destination_amount", destinationAmount);
@@ -337,7 +394,7 @@ void MyTcpServer::onReadyRead() {
                     socket->write("Success");
                 }
             }
-            else if(transactionType == "increase"){
+            else if (transactionType == "increase") {
                 updateQuery.prepare("UPDATE wallets SET usdt = usdt + :destination_amount WHERE email = :email");
                 updateQuery.bindValue(":destination_amount", destinationAmount);
                 updateQuery.bindValue(":email", email);
@@ -350,7 +407,17 @@ void MyTcpServer::onReadyRead() {
                     socket->write("Success");
                 }
             }
-            else if(transactionType == "decrease"){
+            else if (transactionType == "decrease") {
+                selectQuery.prepare("SELECT usdt FROM wallets WHERE email = :email");
+                selectQuery.bindValue(":email", email);
+                if (selectQuery.exec() && selectQuery.next()) {
+                    float currentUSDT = selectQuery.value(0).toFloat();
+                    if (currentUSDT < sourceAmount) {
+                        qDebug() << "Insufficient USDT balance";
+                        socket->write("Insufficient USDT balance");
+                        return;
+                    }
+                }
                 updateQuery.prepare("UPDATE wallets SET usdt = usdt - :source_amount WHERE email = :email");
                 updateQuery.bindValue(":source_amount", sourceAmount);
                 updateQuery.bindValue(":email", email);
@@ -362,7 +429,7 @@ void MyTcpServer::onReadyRead() {
                     socket->write("Success");
                 }
             }
-            else if(transactionType == "trans"){}
+            else if (transactionType == "trans") {}
         } else {
             qDebug() << "Can't open wallets Database: " << query.lastError().text();
         }
@@ -375,6 +442,7 @@ void MyTcpServer::onReadyRead() {
     socket->flush();
     socket->close();
 }
+
     // QTcpSocket* socket = qobject_cast<QTcpSocket*>(sender());
     // if (!socket) return;
 
