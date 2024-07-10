@@ -99,7 +99,7 @@ void MyTcpServer::onReadyRead() {
     else if (type == "signin") {
         QString email = json["email"].toString();
         QString password = json["password"].toString();
-initializeUserDatabase();
+        initializeUserDatabase();
         QSqlQuery query;
         query.prepare("SELECT * FROM users WHERE email = :email AND password = :password");
         query.bindValue(":email", email);
@@ -145,7 +145,7 @@ initializeUserDatabase();
         //     socket->close();
         //     return;
         // }
-initializeUserDatabase();
+        initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET password = :new_password WHERE email = :email");
         query.bindValue(":email", email);
@@ -166,7 +166,7 @@ initializeUserDatabase();
     else if (type == "change_phone_number") {
         QString email = json["email"].toString();
         QString newPhoneNumber = json["new_phone_number"].toString();
-initializeUserDatabase();
+        initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET phoneNumber = :phoneNumber WHERE email = :email");
         query.bindValue(":phoneNumber", newPhoneNumber);
