@@ -29,9 +29,9 @@ bool DatabaseManager::createTable() {
     QSqlQuery query;
     query.prepare("CREATE TABLE IF NOT EXISTS wallets ("
                   "email TEXT PRIMARY KEY, "
-                  "btc_balance INTEGER, btc_price INTEGER, btc_address TEXT, "
-                  "eth_balance INTEGER, eth_price INTEGER, eth_address TEXT, "
-                  "trx_balance INTEGER, trx_price INTEGER, trx_address TEXT, "
+                  "btc_balance REAL, btc_price REAL, btc_address TEXT, "
+                  "eth_balance REAL, eth_price REAL, eth_address TEXT, "
+                  "trx_balance REAL, trx_price REAL, trx_address TEXT, "
                   "usdt REAL, "
                   "word1 TEXT, word2 TEXT, word3 TEXT, word4 TEXT, word5 TEXT, word6 TEXT);");
 
