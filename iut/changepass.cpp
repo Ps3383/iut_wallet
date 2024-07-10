@@ -35,23 +35,29 @@ void changeinfo::on_changep_clicked()
 
     if((ui->linepp->text())==ps){
         if(ui->linepass->text()==ui->linepassn->text()){
-            if(ui->linepassn->text()!=""){
-                MainWindow *main = qobject_cast<MainWindow*>(parent());
-                   bool x =  main->changePassword(em, newpass);
-                   if(x==true){
-                    QMessageBox::information(this, "change password", "Successfully change ");
-                   }
-                   else{
-                       QMessageBox::warning(this, "Change Password Error", "An error occurred while changing password");
-                   }
-                    hide();
-                    accountpage * y;
-                    y = new accountpage(this);
-                    y->show();
+            if(newpass.size()>=4){
+                if(ui->linepassn->text()!=""){
+                    MainWindow *main = qobject_cast<MainWindow*>(parent());
+                       bool x =  main->changePassword(em, newpass);
+                       if(x==true){
+                        QMessageBox::information(this, "change password", "Successfully change ");
+                       }
+                       else{
+                           QMessageBox::warning(this, "Change Password Error", "An error occurred while changing password");
+                       }
+                        hide();
+                        accountpage * y;
+                        y = new accountpage(this);
+                        y->show();
+                }
+                else{
+                    QMessageBox::warning(this, "change passowrd", "enter password!");
+                }
             }
             else{
-                QMessageBox::warning(this, "change passowrd", "enter password!");
+                QMessageBox::warning(this, "change passowrd", "password atleast 4 character!");
             }
+
         }
         else{
             QMessageBox::warning(this, "change passowrd", "must be same password");

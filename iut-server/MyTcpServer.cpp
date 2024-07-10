@@ -152,7 +152,8 @@ void MyTcpServer::onReadyRead() {
         if (!query.exec()) {
             qDebug() << "Password update error:" << query.lastError().text();
             socket->write("Error");
-        } else {
+        }
+        else {
             qDebug() << "Password updated successfully";
             socket->write("Success");
         }

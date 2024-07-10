@@ -38,6 +38,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::sendUser( User user)
 {
+
     //socket=(new QTcpSocket(this));
     QJsonObject json;
     json["type"] = "signup";

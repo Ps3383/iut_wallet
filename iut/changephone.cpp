@@ -30,7 +30,9 @@ void changephone::on_backk_clicked()
 void changephone::on_addd_clicked()
 {
     QString phph = ui->lineEdit->text();
-    if(phph!=""){
+    QRegularExpression regexx(R"((^\+?[0-9]{1,4}?[-.\s]?(\(?\d{1,3}?\)?[-.\s]?)?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$))");
+    QRegularExpressionMatch matchh = regexx.match(phph);
+    if((matchh.hasMatch()) && phph.size()>=10){
         MainWindow *main = qobject_cast<MainWindow*>(parent());
         main->changePhoneNumber(em,phph);
         QMessageBox::information(this, "phone number", "Successfully added");
@@ -40,7 +42,7 @@ void changephone::on_addd_clicked()
         y->show();
     }
     else{
-        QMessageBox::warning(this, "change phone number", "enter phone number!");
+        QMessageBox::warning(this, "change phone number", "Invalid phonenumber format");
     }
 }
 
