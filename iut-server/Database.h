@@ -1,6 +1,17 @@
-#ifndef DATABASE_H
-#define DATABASE_H
+// #ifndef DATABASEMANAGER_H
+// #define DATABASEMANAGER_H
 
-void initializeDatabase();
+// #include <QString>
+// #include <QSqlDatabase>
 
-#endif // DATABASE_H
+// class DatabaseManager {
+// public:
+//     DatabaseManager();
+//     void createTransactionTable();
+//     void insertTransactionFromJson(const QString &jsonFile);
+
+// private:
+//     QSqlDatabase db;
+// };
+
+// #endif // DATABASEMANAGER_H

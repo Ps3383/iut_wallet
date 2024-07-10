@@ -9,12 +9,13 @@
 #include <QSqlError>
 #include <QDebug>
 
+
 class MyTcpServer : public QTcpServer {
     Q_OBJECT
 public:
     MyTcpServer(QObject* parent = nullptr);
 
-protected slots:
+public slots:
     void onNewConnection();
     void onReadyRead();
 

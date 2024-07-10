@@ -1,7 +1,8 @@
 #include "mainwindow.h"
 #include "MyTcpServer.h"
-#include "database.h"
+// #include "database.h"
 #include <QApplication>
+#include "DatabaseManager.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,7 +11,9 @@ int main(int argc, char *argv[])
     w.show();
 
 
-    initializeDatabase();
+    initializeUserDatabase();
+    initializeTransactionsDatabase();
+
 
     MyTcpServer server;
     if (!server.listen(QHostAddress::Any, 1234)) {
@@ -19,5 +22,8 @@ int main(int argc, char *argv[])
     } else {
         qDebug() << "Server started!";
     }
+    server.onNewConnection();
+    server.onReadyRead();
+
     return a.exec();
 }

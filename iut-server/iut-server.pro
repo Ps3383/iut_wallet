@@ -12,15 +12,26 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    API.cpp \
+    Coins.cpp \
     Database.cpp \
+    DatabaseManager.cpp \
     MyTcpServer.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    wallet.cpp
 
 HEADERS += \
+    ../../../../New folder/iut-server-wallet/API.h \
+    ../../../../New folder/iut-server-wallet/API.h \
+    API.h \
+    Coins.h \
     Database.h \
+    DatabaseManager.h \
+    HashArray.h \
     MyTcpServer.h \
-    mainwindow.h
+    mainwindow.h \
+    wallet.h
 
 FORMS += \
     mainwindow.ui
