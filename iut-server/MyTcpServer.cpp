@@ -215,6 +215,74 @@ initializeUserDatabase();
             socket->write("Success");
         }
     }
+
+    else if(type == "getWallet"){
+
+        QString email = json["email"].toString();
+        QString name = json["walletName"].toString();
+
+        DatabaseManager dbManager("wallets.db");
+        QJsonObject json = dbManager.getWallet(email, name);
+
+        QJsonDocument doc(json);
+        QByteArray data = doc.toJson();
+
+
+        socket->write(data);
+        socket->flush();
+        qDebug() << "data was sent to client";
+    }
+    else if (type == "addWallet"){
+
+        QString email = json["email"].toString();
+        QString name = json["walletName"].toString();
+
+        Wallet myWallet(email, name);
+
+        DatabaseManager dbManager("wallets.db");
+        if (dbManager.isOpen()) {
+            dbManager.createTable();
+            if (dbManager.addWallet(myWallet)) {
+                qDebug() << "Wallet added to the database";
+            }
+        }
+    }
+    else if(type == "transactions"){
+        initializeTransactionsDatabase();
+        QString type = json.value("sellORbuy").toString();
+        QString email = json.value("email").toString();
+        QString sourceCoin = json.value("source_coin").toString();
+        QString destinationCoin = json.value("destination_coin").toString();
+        QString sourceAddress = json.value("source_address").toString();
+        QString destinationAddress = json.value("destination_address").toString();
+        float sourceAmount = static_cast<float>(json.value("source_amount").toDouble());
+        float destinationAmount = static_cast<float>(json.value("destination_amount").toDouble());
+
+        QSqlQuery query;
+        query.prepare("INSERT INTO transactions (sellORbuy, email, source_coin, destination_coin, source_address, destination_address, source_amount, destination_amount ) VALUES (:sellORbuy, :email, :source_coin, :destination_coin, :source_address, :destination_address, :source_amount, :destination_amount)");
+
+
+        query.bindValue(":sellORbuy", type);
+        query.bindValue(":email", email);
+        query.bindValue(":source_coin", sourceCoin);
+        query.bindValue(":destination_coin", destinationCoin);
+        query.bindValue(":source_address", sourceAddress);
+        query.bindValue(":destination_address", destinationAddress);
+        query.bindValue(":source_amount", sourceAmount);
+        query.bindValue(":destination_amount", destinationAmount);
+
+
+        if (!query.exec()) {
+            qDebug() << "Transactions insert error:" << query.lastError().text();
+            socket->write("Error");
+        }
+        else {
+            qDebug() << "Transactions inserted successfully";
+            socket->write("Success");
+        }
+    }
+
+
     else {
         qDebug() << "Unknown request type";
         socket->write("Unknown request type");
