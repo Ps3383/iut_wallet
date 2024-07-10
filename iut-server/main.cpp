@@ -10,8 +10,8 @@ int main(int argc, char *argv[])
     w.show();
 
 
-    initializeUserDatabase();
-    initializeTransactionsDatabase();
+   // initializeUserDatabase();
+    //initializeTransactionsDatabase();
 
     MyTcpServer server;
     if (!server.listen(QHostAddress::Any, 1234)) {

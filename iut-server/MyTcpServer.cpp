@@ -1,5 +1,5 @@
 #include "MyTcpServer.h"
-
+#include"Database.h"
 MyTcpServer::MyTcpServer(QObject* parent) : QTcpServer(parent) {
     connect(this, &QTcpServer::newConnection, this, &MyTcpServer::onNewConnection);
 }
@@ -29,6 +29,7 @@ void MyTcpServer::onReadyRead() {
     QString type = json["type"].toString();
 
     if(type=="signup"){
+
         QString email = json["email"].toString();
         QString password = json["password"].toString();
         QString name = json["name"].toString();
@@ -36,6 +37,7 @@ void MyTcpServer::onReadyRead() {
         QString phoneNumber = json["phoneNumber"].toString();
 
         // Check for duplicate email
+        initializeUserDatabase();
         QSqlQuery checkQuery;
         checkQuery.prepare("SELECT COUNT(*) FROM users WHERE email = :email");
         checkQuery.bindValue(":email", email);
@@ -97,7 +99,7 @@ void MyTcpServer::onReadyRead() {
     else if (type == "signin") {
         QString email = json["email"].toString();
         QString password = json["password"].toString();
-
+initializeUserDatabase();
         QSqlQuery query;
         query.prepare("SELECT * FROM users WHERE email = :email AND password = :password");
         query.bindValue(":email", email);
@@ -143,7 +145,7 @@ void MyTcpServer::onReadyRead() {
         //     socket->close();
         //     return;
         // }
-
+initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET password = :new_password WHERE email = :email");
         query.bindValue(":email", email);
@@ -164,7 +166,7 @@ void MyTcpServer::onReadyRead() {
     else if (type == "change_phone_number") {
         QString email = json["email"].toString();
         QString newPhoneNumber = json["new_phone_number"].toString();
-
+initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET phoneNumber = :phoneNumber WHERE email = :email");
         query.bindValue(":phoneNumber", newPhoneNumber);
@@ -182,7 +184,7 @@ void MyTcpServer::onReadyRead() {
     else if (type == "change_address") {
         QString email = json["email"].toString();
         QString newAddress = json["new_address"].toString();
-
+initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET address = :address WHERE email = :email");
         query.bindValue(":address", newAddress);
@@ -199,7 +201,7 @@ void MyTcpServer::onReadyRead() {
     else if (type == "change_name") {
         QString email = json["email"].toString();
         QString newName = json["new_name"].toString();
-
+initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET name = :name WHERE email = :email");
         query.bindValue(":name", newName);
