@@ -249,7 +249,7 @@ initializeUserDatabase();
     }
     else if(type == "transactions"){
         initializeTransactionsDatabase();
-        QString type = json.value("sellORbuy").toString();
+        QString transactionType = json.value("sellORbuy").toString();
         QString email = json.value("email").toString();
         QString sourceCoin = json.value("source_coin").toString();
         QString destinationCoin = json.value("destination_coin").toString();
@@ -260,9 +260,7 @@ initializeUserDatabase();
 
         QSqlQuery query;
         query.prepare("INSERT INTO transactions (sellORbuy, email, source_coin, destination_coin, source_address, destination_address, source_amount, destination_amount ) VALUES (:sellORbuy, :email, :source_coin, :destination_coin, :source_address, :destination_address, :source_amount, :destination_amount)");
-
-
-        query.bindValue(":sellORbuy", type);
+        query.bindValue(":sellORbuy", transactionType);
         query.bindValue(":email", email);
         query.bindValue(":source_coin", sourceCoin);
         query.bindValue(":destination_coin", destinationCoin);
@@ -271,17 +269,98 @@ initializeUserDatabase();
         query.bindValue(":source_amount", sourceAmount);
         query.bindValue(":destination_amount", destinationAmount);
 
-
         if (!query.exec()) {
             qDebug() << "Transactions insert error:" << query.lastError().text();
             socket->write("Error");
-        }
-        else {
+        } else {
             qDebug() << "Transactions inserted successfully";
             socket->write("Success");
         }
-    }
 
+        //***************************************************************add wallet Obj query *******************************************************************
+
+        DatabaseManager dbManager("wallets.db");
+        if (dbManager.isOpen()) {
+            dbManager.createTable();
+            QSqlQuery updateQuery; //
+
+            if (transactionType == "buy") {
+                if(destinationCoin == "btc"){
+                    updateQuery.prepare("UPDATE wallets SET btc_balanc = btc_balanc + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
+                }
+                else if(destinationCoin == "eth"){
+                    updateQuery.prepare("UPDATE wallets SET eth_balanc = eth_balanc + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
+                }
+                else if(destinationCoin == "trx"){
+                    updateQuery.prepare("UPDATE wallets SET trx_balanc = trx_balanc + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
+                }
+                updateQuery.bindValue(":destination_amount", destinationAmount);
+                updateQuery.bindValue(":source_amount", sourceAmount);
+                updateQuery.bindValue(":email", email);
+
+                if (!updateQuery.exec()) {
+                    qDebug() << "Coin wasn't bought" << updateQuery.lastError().text();
+                    socket->write("Error");
+                } else {
+                    qDebug() << "Coin was bought";
+                    socket->write("Success");
+                }
+            }
+            else if(transactionType == "sell"){
+                if(destinationCoin == "btc"){
+                    updateQuery.prepare("UPDATE wallets SET btc_balanc = btc_balanc - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
+                }
+                else if(destinationCoin == "eth"){
+                    updateQuery.prepare("UPDATE wallets SET eth_balanc = eth_balanc - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
+                }
+                else if(destinationCoin == "trx"){
+                    updateQuery.prepare("UPDATE wallets SET trx_balanc = trx_balanc - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
+                }
+                updateQuery.bindValue(":destination_amount", destinationAmount);
+                updateQuery.bindValue(":source_amount", sourceAmount);
+                updateQuery.bindValue(":email", email);
+
+                if (!updateQuery.exec()) {
+                    qDebug() << "Coin wasn't sold: " << updateQuery.lastError().text();
+                    socket->write("Error");
+                } else {
+                    qDebug() << "Coin was sold";
+                    socket->write("Success");
+                }
+            }
+            else if(transactionType == "increase"){
+                updateQuery.prepare("UPDATE wallets SET usdt = usdt + :destination_amount WHERE email = :email");
+                updateQuery.bindValue(":destination_amount", destinationAmount);
+                updateQuery.bindValue(":email", email);
+
+                if (!updateQuery.exec()) {
+                    qDebug() << "The increase was not successful: " << updateQuery.lastError().text();
+                    socket->write("Error");
+                } else {
+                    qDebug() << "The increase was successful";
+                    socket->write("Success");
+                }
+            }
+            else if(transactionType == "decrease"){
+                updateQuery.prepare("UPDATE wallets SET usdt = usdt - :source_amount WHERE email = :email");
+                updateQuery.bindValue(":source_amount", sourceAmount);
+                updateQuery.bindValue(":email", email);
+                if (!updateQuery.exec()) {
+                    qDebug() << "The withdrawal was not successful: " << updateQuery.lastError().text();
+                    socket->write("Error");
+                } else {
+                    qDebug() << "The withdrawal was successful";
+                    socket->write("Success");
+                }
+            }
+            else if(transactionType == "trans"){}
+        } else {
+            qDebug() << "Can't open wallets Database: " << query.lastError().text();
+        }
+    }
+    else if(type == "usdt_increase"){
+
+    }
 
     else {
         qDebug() << "Unknown request type";
