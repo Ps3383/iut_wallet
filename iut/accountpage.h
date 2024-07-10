@@ -29,6 +29,8 @@ private slots:
 
     void on_changen_clicked();
 
+    void on_showwallet_clicked();
+
 private:
     Ui::accountpage *ui;
 };

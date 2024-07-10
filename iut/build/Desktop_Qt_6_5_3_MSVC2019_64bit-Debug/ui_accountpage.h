@@ -29,6 +29,7 @@ public:
     QPushButton *changeph;
     QPushButton *changea;
     QPushButton *changen;
+    QPushButton *showwallet;
 
     void setupUi(QDialog *accountpage)
     {
@@ -65,6 +66,9 @@ public:
         changen = new QPushButton(accountpage);
         changen->setObjectName("changen");
         changen->setGeometry(QRect(490, 220, 121, 31));
+        showwallet = new QPushButton(accountpage);
+        showwallet->setObjectName("showwallet");
+        showwallet->setGeometry(QRect(250, 130, 131, 41));
 
         retranslateUi(accountpage);
 
@@ -84,6 +88,7 @@ public:
         changeph->setText(QCoreApplication::translate("accountpage", "change phone", nullptr));
         changea->setText(QCoreApplication::translate("accountpage", "change address", nullptr));
         changen->setText(QCoreApplication::translate("accountpage", "change name", nullptr));
+        showwallet->setText(QCoreApplication::translate("accountpage", "show wallet", nullptr));
     } // retranslateUi
 
 };

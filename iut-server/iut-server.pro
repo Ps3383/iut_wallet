@@ -14,13 +14,20 @@ CONFIG += c++17
 SOURCES += \
     Database.cpp \
     MyTcpServer.cpp \
+    api.cpp \
+    coins.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    wallet.cpp
 
 HEADERS += \
     Database.h \
+    HashArray.h \
     MyTcpServer.h \
-    mainwindow.h
+    api.h \
+    coins.h \
+    mainwindow.h \
+    wallet.h
 
 FORMS += \
     mainwindow.ui

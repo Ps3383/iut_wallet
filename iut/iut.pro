@@ -17,6 +17,7 @@ SOURCES += \
     createwallet.cpp \
     main.cpp \
     mainwindow.cpp \
+    showwallet.cpp \
     sighuppage.cpp \
     signinpage.cpp \
     user.cpp
@@ -29,6 +30,7 @@ HEADERS += \
     changephone.h \
     createwallet.h \
     mainwindow.h \
+    showwallet.h \
     sighuppage.h \
     signinpage.h \
     user.h
@@ -41,6 +43,7 @@ FORMS += \
     changephone.ui \
     createwallet.ui \
     mainwindow.ui \
+    showwallet.ui \
     sighuppage.ui \
     signinpage.ui
 

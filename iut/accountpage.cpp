@@ -6,6 +6,7 @@
 #include"changephone.h"
 #include"changeaddress.h"
 #include"changename.h"
+#include"showwallet.h"
 
 accountpage::accountpage(QWidget *parent)
     : QDialog(parent)
@@ -74,5 +75,15 @@ void accountpage::on_changen_clicked()
     changename * t;
     t = new changename(this);
     t->show();
+}
+
+
+void accountpage::on_showwallet_clicked()
+{
+    hide();
+    showwallet * j;
+    j = new showwallet(this);
+    j->show();
+
 }
 
