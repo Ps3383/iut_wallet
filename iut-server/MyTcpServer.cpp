@@ -149,7 +149,11 @@ void MyTcpServer::onReadyRead() {
         //     return;
         // }
 
+<<<<<<< HEAD
         //open and initial users.db database
+=======
+	//open and initial users.db database 
+>>>>>>> fe6448e9341d58648def10bc0f49b9f650315773
         initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET password = :new_password WHERE email = :email");
