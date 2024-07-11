@@ -267,6 +267,8 @@ void MyTcpServer::onReadyRead() {
         float sourceAmount = static_cast<float>(json.value("source_amount").toDouble());
         float destinationAmount = static_cast<float>(json.value("destination_amount").toDouble());
 
+        qDebug() << "sourceAmount: " << sourceAmount << "destinationAmount" << destinationAmount;
+
         QSqlQuery query;
         query.prepare("INSERT INTO transactions (sellORbuy, email, source_coin, destination_coin, source_address, destination_address, source_amount, destination_amount ) VALUES (:sellORbuy, :email, :source_coin, :destination_coin, :source_address, :destination_address, :source_amount, :destination_amount)");
         query.bindValue(":sellORbuy", transactionType);
