@@ -34,7 +34,6 @@ bool DatabaseManager::createTable() {
                   "trx_balance REAL, trx_price REAL, trx_address TEXT, "
                   "usdt REAL, "
                   "word1 TEXT, word2 TEXT, word3 TEXT, word4 TEXT, word5 TEXT, word6 TEXT);");
-
     if (!query.exec()) {
         qDebug() << "Couldn't create the table 'wallets': one might already exist.";
         success = false;

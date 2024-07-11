@@ -75,3 +75,25 @@ void createJasonforDecreace_usdt(){
     json["source_amount"] = coin_amount ;
     json["destination_amount"] = 0.0;
 }
+
+
+void createJasonfortrade(){
+    QString email = "mahdi"; // get from client
+    QString source_coin = "coinName mabda"; // get from user(همون جایی که کاربر وارد میکنه یه کاری بکن که مشخص بشه چه کوینی رو انتخاب کرده)
+    QString destination_coin = "coinName maghsad"; // get from user(همون جایی که کاربر وارد میکنه یه کاری بکن که مشخص بشه چه کوینی رو انتخاب کرده)
+    QString destination_address = "destination address"; //get from user
+    float source_price,source_amount, destination_price;
+    source_price  = 3405.5; //get from api
+    destination_price = 750.6; //get from api
+    source_amount = 3.5; //get from user
+    QJsonObject json;
+    json["type"] = "transactions";
+    json["sellORbuy"] = "trade";
+    json["email"] = email;
+    json["source_coin"] = source_coin;
+    json["destination_coin"] = destination_coin;
+    json["source_address"] = "";
+    json["destination_address"] = destination_address;
+    json["source_amount"] = source_amount;
+    json["destination_amount"] = source_amount * source_price / destination_price ; // with this formula
+}

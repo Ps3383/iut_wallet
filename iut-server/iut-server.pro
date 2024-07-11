@@ -18,6 +18,7 @@ SOURCES += \
     coins.cpp \
     main.cpp \
     mainwindow.cpp \
+    test.cpp \
     wallet.cpp
 
 HEADERS += \

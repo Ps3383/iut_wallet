@@ -15,7 +15,7 @@ void MyTcpServer::onReadyRead() {
 
     QByteArray data = socket->readAll();
     QJsonDocument doc = QJsonDocument::fromJson(data);
-	if (doc.isNull()) {
+    if (doc.isNull()) {
         qDebug() << "Invalid JSON received";
         socket->write("Invalid JSON");
         socket->flush();
@@ -23,7 +23,7 @@ void MyTcpServer::onReadyRead() {
         return;
     }
     QJsonObject json = doc.object();
-	qDebug() << "Received JSON:" << doc.toJson(QJsonDocument::Indented);
+    qDebug() << "Received JSON:" << doc.toJson(QJsonDocument::Indented);
 
 
     QString type = json["type"].toString();
@@ -37,7 +37,7 @@ void MyTcpServer::onReadyRead() {
         QString phoneNumber = json["phoneNumber"].toString();
 
         // Check for duplicate email
-	//open and initial users.db database
+        //open and initial users.db database
         initializeUserDatabase();
         QSqlQuery checkQuery;
         checkQuery.prepare("SELECT COUNT(*) FROM users WHERE email = :email");
@@ -97,12 +97,12 @@ void MyTcpServer::onReadyRead() {
             socket->write("Success");
         }
     }
-	    //for signing users
+    //for signing users
     else if (type == "signin") {
         QString email = json["email"].toString();
         QString password = json["password"].toString();
         //open and initial users.db database
-	initializeUserDatabase();
+        initializeUserDatabase();
         QSqlQuery query;
         query.prepare("SELECT * FROM users WHERE email = :email AND password = :password");
         query.bindValue(":email", email);
@@ -170,9 +170,9 @@ void MyTcpServer::onReadyRead() {
 
     else if (type == "change_phone_number") {
         QString email = json["email"].toString();
-	QString newPhoneNumber = json["new_phone_number"].toString();
-        //open and initial users.db database
-	initializeUserDatabase();
+        QString newPhoneNumber = json["new_phone_number"].toString();
+            //open and initial users.db database
+        initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET phoneNumber = :phoneNumber WHERE email = :email");
         query.bindValue(":phoneNumber", newPhoneNumber);
@@ -191,7 +191,7 @@ void MyTcpServer::onReadyRead() {
         QString email = json["email"].toString();
         QString newAddress = json["new_address"].toString();
         //open and initial users.db database
-	initializeUserDatabase();
+        initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET address = :address WHERE email = :email");
         query.bindValue(":address", newAddress);
@@ -209,7 +209,7 @@ void MyTcpServer::onReadyRead() {
         QString email = json["email"].toString();
         QString newName = json["new_name"].toString();
         //open and initial users.db database
-	initializeUserDatabase();
+        initializeUserDatabase();
         QSqlQuery query;
         query.prepare("UPDATE users SET name = :name WHERE email = :email");
         query.bindValue(":name", newName);
@@ -294,9 +294,9 @@ void MyTcpServer::onReadyRead() {
         if (dbManager.isOpen()) {
             dbManager.createTable();
             QSqlQuery selectQuery;
-             //create a new object from QSqlQuery
+                //create a new object from QSqlQuery
             QSqlQuery updateQuery;
-	    // for buy transaction 
+            // for buy transaction
             if (transactionType == "buy") {
                 if (destinationCoin == "btc") {
                     selectQuery.prepare("SELECT usdt FROM wallets WHERE email = :email");
@@ -309,7 +309,10 @@ void MyTcpServer::onReadyRead() {
                             return;
                         }
                     }
-                    updateQuery.prepare("UPDATE wallets SET btc_balanc = btc_balanc + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
+                    if (!selectQuery.exec()){
+                        qDebug() << "Error checking USDT balance:" << selectQuery.lastError().text();
+                    }
+                    updateQuery.prepare("UPDATE wallets SET btc_balance = btc_balance + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
                 } else if (destinationCoin == "eth") {
                     selectQuery.prepare("SELECT usdt FROM wallets WHERE email = :email");
                     selectQuery.bindValue(":email", email);
@@ -321,7 +324,10 @@ void MyTcpServer::onReadyRead() {
                             return;
                         }
                     }
-                    updateQuery.prepare("UPDATE wallets SET eth_balanc = eth_balanc + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
+                    if (!selectQuery.exec()){
+                        qDebug() << "Error checking USDT balance:" << selectQuery.lastError().text();
+                    }
+                    updateQuery.prepare("UPDATE wallets SET eth_balance = eth_balance + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
                 } else if (destinationCoin == "trx") {
                     selectQuery.prepare("SELECT usdt FROM wallets WHERE email = :email");
                     selectQuery.bindValue(":email", email);
@@ -333,7 +339,10 @@ void MyTcpServer::onReadyRead() {
                             return;
                         }
                     }
-                    updateQuery.prepare("UPDATE wallets SET trx_balanc = trx_balanc + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
+                    if (!selectQuery.exec()){
+                        qDebug() << "Error checking USDT balance:" << selectQuery.lastError().text();
+                    }
+                    updateQuery.prepare("UPDATE wallets SET trx_balance = trx_balance + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
                 }
                 updateQuery.bindValue(":destination_amount", destinationAmount);
                 updateQuery.bindValue(":source_amount", sourceAmount);
@@ -359,7 +368,7 @@ void MyTcpServer::onReadyRead() {
                             return;
                         }
                     }
-                    updateQuery.prepare("UPDATE wallets SET btc_balanc = btc_balanc - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
+                    updateQuery.prepare("UPDATE wallets SET btc_balance = btc_balance - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
                 } else if (sourceCoin == "eth") {
                     selectQuery.prepare("SELECT eth_balanc FROM wallets WHERE email = :email");
                     selectQuery.bindValue(":email", email);
@@ -371,7 +380,7 @@ void MyTcpServer::onReadyRead() {
                             return;
                         }
                     }
-                    updateQuery.prepare("UPDATE wallets SET eth_balanc = eth_balanc - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
+                    updateQuery.prepare("UPDATE wallets SET eth_balance = eth_balance - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
                 } else if (sourceCoin == "trx") {
                     selectQuery.prepare("SELECT trx_balanc FROM wallets WHERE email = :email");
                     selectQuery.bindValue(":email", email);
@@ -383,7 +392,7 @@ void MyTcpServer::onReadyRead() {
                             return;
                         }
                     }
-                    updateQuery.prepare("UPDATE wallets SET trx_balanc = trx_balanc - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
+                    updateQuery.prepare("UPDATE wallets SET trx_balance = trx_balance - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
                 }
                 updateQuery.bindValue(":destination_amount", destinationAmount);
                 updateQuery.bindValue(":source_amount", sourceAmount);
@@ -512,38 +521,38 @@ void MyTcpServer::onReadyRead() {
     socket->close();
 }
 
-    // QTcpSocket* socket = qobject_cast<QTcpSocket*>(sender());
-    // if (!socket) return;
+// QTcpSocket* socket = qobject_cast<QTcpSocket*>(sender());
+// if (!socket) return;
 
-    // QByteArray data = socket->readAll();
-    // QJsonDocument doc = QJsonDocument::fromJson(data);
-    // QJsonObject json = doc.object();
+// QByteArray data = socket->readAll();
+// QJsonDocument doc = QJsonDocument::fromJson(data);
+// QJsonObject json = doc.object();
 
-    // QString email = json["email"].toString();
-    // QString password = json["password"].toString();
-    // QString name = json["name"].toString();
-    // QString address = json["address"].toString();
-    // QString phoneNumber = json["phoneNumber"].toString();
+// QString email = json["email"].toString();
+// QString password = json["password"].toString();
+// QString name = json["name"].toString();
+// QString address = json["address"].toString();
+// QString phoneNumber = json["phoneNumber"].toString();
 
-    // QSqlQuery query;
-    // query.prepare("INSERT INTO users (email, password, name, address, phoneNumber) "
-    //               "VALUES (?, ?, ?, ?, ?, ?)");
-    // query.addBindValue(email);
-    // query.addBindValue(password);
-    // query.addBindValue(name);
-    // query.addBindValue(address);
-    // query.addBindValue(phoneNumber);
+// QSqlQuery query;
+// query.prepare("INSERT INTO users (email, password, name, address, phoneNumber) "
+//               "VALUES (?, ?, ?, ?, ?, ?)");
+// query.addBindValue(email);
+// query.addBindValue(password);
+// query.addBindValue(name);
+// query.addBindValue(address);
+// query.addBindValue(phoneNumber);
 
-    // if (!query.exec()) {
-    //     qDebug() << "Insert error:" << query.lastError().text();
-    //     socket->write("Error");
-    // } else {
-    //     qDebug() << "Insert success";
-    //     socket->write("Success");
-    // }
+// if (!query.exec()) {
+//     qDebug() << "Insert error:" << query.lastError().text();
+//     socket->write("Error");
+// } else {
+//     qDebug() << "Insert success";
+//     socket->write("Success");
+// }
 
-    // socket->flush();
-    // socket->close();
+// socket->flush();
+// socket->close();
 // }
 // void MyTcpServer::processJsonData(const QJsonObject &json) {
 //

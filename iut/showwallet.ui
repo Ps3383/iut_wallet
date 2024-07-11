@@ -51,8 +51,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>80</x>
-      <y>180</y>
+      <x>20</x>
+      <y>360</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -64,8 +64,8 @@
    <widget class="QPushButton" name="shw">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>180</y>
+      <x>150</x>
+      <y>140</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -134,6 +134,19 @@
     </property>
     <property name="text">
      <string>decrease</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="trade">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>190</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Trade</string>
     </property>
    </widget>
   </widget>

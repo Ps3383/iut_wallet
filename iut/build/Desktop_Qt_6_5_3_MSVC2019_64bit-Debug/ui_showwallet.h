@@ -33,6 +33,7 @@ public:
     QPushButton *increase;
     QPushButton *sell;
     QPushButton *decrease;
+    QPushButton *trade;
 
     void setupUi(QDialog *showwallet)
     {
@@ -50,10 +51,10 @@ public:
         linewalletname->setGeometry(QRect(190, 80, 113, 24));
         pushButton = new QPushButton(groupBox);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(80, 180, 80, 24));
+        pushButton->setGeometry(QRect(20, 360, 80, 24));
         shw = new QPushButton(groupBox);
         shw->setObjectName("shw");
-        shw->setGeometry(QRect(220, 180, 80, 24));
+        shw->setGeometry(QRect(150, 140, 80, 24));
         textBrowser = new QTextBrowser(groupBox);
         textBrowser->setObjectName("textBrowser");
         textBrowser->setGeometry(QRect(350, 40, 311, 341));
@@ -69,6 +70,9 @@ public:
         decrease = new QPushButton(groupBox);
         decrease->setObjectName("decrease");
         decrease->setGeometry(QRect(220, 300, 80, 24));
+        trade = new QPushButton(groupBox);
+        trade->setObjectName("trade");
+        trade->setGeometry(QRect(150, 190, 80, 24));
 
         retranslateUi(showwallet);
 
@@ -86,6 +90,7 @@ public:
         increase->setText(QCoreApplication::translate("showwallet", "increase", nullptr));
         sell->setText(QCoreApplication::translate("showwallet", "sell", nullptr));
         decrease->setText(QCoreApplication::translate("showwallet", "decrease", nullptr));
+        trade->setText(QCoreApplication::translate("showwallet", "Trade", nullptr));
     } // retranslateUi
 
 };

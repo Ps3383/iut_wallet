@@ -10,48 +10,75 @@ CONFIG += c++17
 
 SOURCES += \
     accountpage.cpp \
+    btoe.cpp \
+    btot.cpp \
     buy.cpp \
     changeaddress.cpp \
     changename.cpp \
     changepass.cpp \
     changephone.cpp \
     createwallet.cpp \
+    decrease.cpp \
+    etob.cpp \
+    etot.cpp \
+    increase.cpp \
     main.cpp \
     mainwindow.cpp \
     sell.cpp \
     showwallet.cpp \
     sighuppage.cpp \
     signinpage.cpp \
+    trade.cpp \
+    ttob.cpp \
+    ttoe.cpp \
     user.cpp
 
 HEADERS += \
     accountpage.h \
+    btoe.h \
+    btot.h \
     buy.h \
     changeaddress.h \
     changename.h \
     changepass.h \
     changephone.h \
     createwallet.h \
+    decrease.h \
+    etob.h \
+    etot.h \
+    increase.h \
     mainwindow.h \
     sell.h \
     showwallet.h \
     sighuppage.h \
     signinpage.h \
+    trade.h \
+    ttob.h \
+    ttoe.h \
     user.h
 
 FORMS += \
     accountpage.ui \
+    btoe.ui \
+    btot.ui \
     buy.ui \
     changeaddress.ui \
     changename.ui \
     changepass.ui \
     changephone.ui \
     createwallet.ui \
+    decrease.ui \
+    etob.ui \
+    etot.ui \
+    increase.ui \
     mainwindow.ui \
     sell.ui \
     showwallet.ui \
     sighuppage.ui \
-    signinpage.ui
+    signinpage.ui \
+    trade.ui \
+    ttob.ui \
+    ttoe.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -35,19 +35,22 @@ std::string Coin::generateUniqueAddress() {
 }
 
 BTC::BTC() {
-    price = prices["bitcoin"];
+    // price = prices["bitcoin"];
+    price = 57669;
     address += "btc";
     qDebug()<< "BTCprice in constructor = " <<prices["bitcoin"];
 }
 
 ETH::ETH() {
-    price = prices["ethereum"];
+    //price = prices["ethereum"];
+    price = 3125.12;
     address += "eth";
     qDebug()<< "ETHprice in constructor = " <<prices["ethereum"];
 }
 
 TRON::TRON() {
-    price = prices["tron"];
+    // price = prices["tron"];
+    price = 0.1347;
     address += "trx";
     qDebug()<< "TRONprice in constructor = " <<prices["tron"];
 }
