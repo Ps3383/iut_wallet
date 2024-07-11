@@ -149,8 +149,11 @@ void MyTcpServer::onReadyRead() {
         //     return;
         // }
 
+<<<<<<< HEAD
         //open and initial users.db database
 
+=======
+>>>>>>> 3cafbe004897a500c1505583cef09253363ef1d7
 	//open and initial users.db database 
         initializeUserDatabase();
         QSqlQuery query;
@@ -269,6 +272,8 @@ void MyTcpServer::onReadyRead() {
         float sourceAmount = static_cast<float>(json.value("source_amount").toDouble());
         float destinationAmount = static_cast<float>(json.value("destination_amount").toDouble());
 
+        qDebug() << "sourceAmount: " << sourceAmount << "destinationAmount" << destinationAmount;
+
         QSqlQuery query;
         query.prepare("INSERT INTO transactions (sellORbuy, email, source_coin, destination_coin, source_address, destination_address, source_amount, destination_amount ) VALUES (:sellORbuy, :email, :source_coin, :destination_coin, :source_address, :destination_address, :source_amount, :destination_amount)");
         query.bindValue(":sellORbuy", transactionType);
@@ -309,7 +314,10 @@ void MyTcpServer::onReadyRead() {
                             return;
                         }
                     }
-                    updateQuery.prepare("UPDATE wallets SET btc_balanc = btc_balanc + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
+                    if (!selectQuery.exec()){
+                        qDebug() << "Error checking USDT balance:" << selectQuery.lastError().text();
+                    }
+                    updateQuery.prepare("UPDATE wallets SET btc_balance = btc_balance + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
                 } else if (destinationCoin == "eth") {
                     selectQuery.prepare("SELECT usdt FROM wallets WHERE email = :email");
                     selectQuery.bindValue(":email", email);
@@ -321,7 +329,10 @@ void MyTcpServer::onReadyRead() {
                             return;
                         }
                     }
-                    updateQuery.prepare("UPDATE wallets SET eth_balanc = eth_balanc + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
+                    if (!selectQuery.exec()){
+                        qDebug() << "Error checking USDT balance:" << selectQuery.lastError().text();
+                    }
+                    updateQuery.prepare("UPDATE wallets SET eth_balance = eth_balance + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
                 } else if (destinationCoin == "trx") {
                     selectQuery.prepare("SELECT usdt FROM wallets WHERE email = :email");
                     selectQuery.bindValue(":email", email);
@@ -333,7 +344,10 @@ void MyTcpServer::onReadyRead() {
                             return;
                         }
                     }
-                    updateQuery.prepare("UPDATE wallets SET trx_balanc = trx_balanc + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
+                    if (!selectQuery.exec()){
+                        qDebug() << "Error checking USDT balance:" << selectQuery.lastError().text();
+                    }
+                    updateQuery.prepare("UPDATE wallets SET trx_balance = trx_balance + :destination_amount, usdt = usdt - :source_amount WHERE email = :email");
                 }
                 updateQuery.bindValue(":destination_amount", destinationAmount);
                 updateQuery.bindValue(":source_amount", sourceAmount);
@@ -359,7 +373,7 @@ void MyTcpServer::onReadyRead() {
                             return;
                         }
                     }
-                    updateQuery.prepare("UPDATE wallets SET btc_balanc = btc_balanc - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
+                    updateQuery.prepare("UPDATE wallets SET btc_balance = btc_balance - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
                 } else if (sourceCoin == "eth") {
                     selectQuery.prepare("SELECT eth_balanc FROM wallets WHERE email = :email");
                     selectQuery.bindValue(":email", email);
@@ -371,7 +385,7 @@ void MyTcpServer::onReadyRead() {
                             return;
                         }
                     }
-                    updateQuery.prepare("UPDATE wallets SET eth_balanc = eth_balanc - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
+                    updateQuery.prepare("UPDATE wallets SET eth_balance = eth_balance - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
                 } else if (sourceCoin == "trx") {
                     selectQuery.prepare("SELECT trx_balanc FROM wallets WHERE email = :email");
                     selectQuery.bindValue(":email", email);
@@ -383,7 +397,7 @@ void MyTcpServer::onReadyRead() {
                             return;
                         }
                     }
-                    updateQuery.prepare("UPDATE wallets SET trx_balanc = trx_balanc - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
+                    updateQuery.prepare("UPDATE wallets SET trx_balance = trx_balance - :source_amount, usdt = usdt + :destination_amount WHERE email = :email");
                 }
                 updateQuery.bindValue(":destination_amount", destinationAmount);
                 updateQuery.bindValue(":source_amount", sourceAmount);

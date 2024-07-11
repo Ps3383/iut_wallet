@@ -287,16 +287,16 @@ QString MainWindow::getWalletInfo(QString email, QString walletName)
 
             if (json["status"] == "success") {
                 info += "Email: " + json["email"].toString() + "\n";
-                info += "BTC Balance: " + QString::number(json["btc_balance"].toInt()) + "\n";
-                info += "BTC Price: " + QString::number(json["btc_price"].toInt()) + "\n";
+                info += "BTC Balance: " + QString::number(json["btc_balance"].toDouble()) + "\n";
+                info += "BTC Price: " + QString::number(json["btc_price"].toDouble()) + "\n";
                 info += "BTC Address: " + json["btc_address"].toString() + "\n";
-                info += "ETH Balance: " + QString::number(json["eth_balance"].toInt()) + "\n";
-                info += "ETH Price: " + QString::number(json["eth_price"].toInt()) + "\n";
+                info += "ETH Balance: " + QString::number(json["eth_balance"].toDouble()) + "\n";
+                info += "ETH Price: " + QString::number(json["eth_price"].toDouble()) + "\n";
                 info += "ETH Address: " + json["eth_address"].toString() + "\n";
-                info += "TRX Balance: " + QString::number(json["trx_balance"].toInt()) + "\n";
-                info += "TRX Price: " + QString::number(json["trx_price"].toInt()) + "\n";
+                info += "TRX Balance: " + QString::number(json["trx_balance"].toDouble()) + "\n";
+                info += "TRX Price: " + QString::number(json["trx_price"].toDouble()) + "\n";
                 info += "TRX Address: " + json["trx_address"].toString() + "\n";
-                info += "USDT: " + QString::number(json["usdt"].toDouble()) + "\n";
+                info += "USDT balance: " + QString::number(json["usdt"].toDouble()) + "\n";
 
                 QJsonArray wordsArray = json["words"].toArray();
                 info += "Words: ";

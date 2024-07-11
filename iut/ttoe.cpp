@@ -38,12 +38,12 @@ void TTOE::on_OK_clicked()
     QString sourseamount  = ui->amount->text();
     if((egerr(sourseamount)) && adr!=""){
         QString email = em; // get from client
-        QString source_coin = "TRX"; // get from user(همون جایی که کاربر وارد میکنه یه کاری بکن که مشخص بشه چه کوینی رو انتخاب کرده)
-        QString destination_coin = "ETH"; // get from user(همون جایی که کاربر وارد میکنه یه کاری بکن که مشخص بشه چه کوینی رو انتخاب کرده)
+        QString source_coin = "trx"; // get from user(همون جایی که کاربر وارد میکنه یه کاری بکن که مشخص بشه چه کوینی رو انتخاب کرده)
+        QString destination_coin = "eth"; // get from user(همون جایی که کاربر وارد میکنه یه کاری بکن که مشخص بشه چه کوینی رو انتخاب کرده)
         QString destination_address = adr; //get from user
         float source_price,source_amount, destination_price;
-        source_price  = 3405.5; //get from api
-        destination_price = 750.6; //get from api
+        source_price  = 0.1347; //get from api
+        destination_price = 3125.12; //get from api
         source_amount = sourseamount.toFloat() ; //get from user
         QJsonObject json;
         json["type"] = "transactions";

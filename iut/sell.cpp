@@ -50,9 +50,9 @@ void sell::on_sell_2_clicked()
         if(btc=="" && eth=="" && trx!=""){
             if(isInteger(trx)){
                 QString email = em; // get from client
-                QString sell_coin = "TRX"; // get from user
+                QString sell_coin = "trx"; // get from user
                 float coin_price,coin_amount;
-                coin_price  = 3405.5; //get from api
+                coin_price  = 0.1347; //get from api
                 coin_amount = trx.toFloat(); //get from user
                 QJsonObject json;
                 json["type"] = "transactions";
@@ -118,9 +118,9 @@ void sell::on_sell_2_clicked()
         else if(btc!="" && eth=="" && trx==""){
             if(isInteger(btc)){
                 QString email = em; // get from client
-                QString sell_coin = "BTC"; // get from use
+                QString sell_coin = "btc"; // get from use
                 float coin_price,coin_amount;
-                coin_price  = 3405.5; //get from api
+                coin_price  = 57669; //get from api
                 coin_amount = btc.toFloat(); //get from user
                 QJsonObject json;
                 json["type"] = "transactions";
@@ -185,9 +185,9 @@ void sell::on_sell_2_clicked()
         else if(btc=="" && eth!="" && trx==""){
             if(isInteger(eth)){
                 QString email = em; // get from client
-                QString sell_coin = "ETH";
+                QString sell_coin = "eth";
                 float coin_price,coin_amount;
-                coin_price  = 3405.5; //get from api
+                coin_price  = 3125.12; //get from api
                 coin_amount = eth.toFloat(); //get from user
                 QJsonObject json;
                 json["type"] = "transactions";
