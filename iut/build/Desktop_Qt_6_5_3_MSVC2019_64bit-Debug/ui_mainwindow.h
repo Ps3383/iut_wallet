@@ -34,14 +34,19 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
         MainWindow->resize(800, 600);
+        MainWindow->setStyleSheet(QString::fromUtf8(""));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(150, 110, 131, 41));
+        pushButton->setGeometry(QRect(170, 120, 131, 41));
+        pushButton->setStyleSheet(QString::fromUtf8("background-color:rgb(255, 255, 255);\n"
+""));
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(340, 110, 141, 41));
+        pushButton_2->setGeometry(QRect(360, 120, 141, 41));
+        pushButton_2->setStyleSheet(QString::fromUtf8("background-color:rgb(255, 255, 255);\n"
+""));
         pushButton_3 = new QPushButton(centralwidget);
         pushButton_3->setObjectName("pushButton_3");
         pushButton_3->setGeometry(QRect(450, 250, 80, 24));

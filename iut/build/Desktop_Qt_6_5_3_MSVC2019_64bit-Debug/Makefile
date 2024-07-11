@@ -258,6 +258,7 @@ Makefile: ..\..\iut.pro C:\Qt\6.5.3\msvc2019_64\mkspecs\win32-msvc\qmake.conf C:
 		C:\Qt\6.5.3\msvc2019_64\lib\Qt6Core.prl \
 		C:\Qt\6.5.3\msvc2019_64\lib\Qt6EntryPoint.prl \
 		C:\Qt\6.5.3\msvc2019_64\mkspecs\features\build_pass.prf \
+		..\..\BTCETHTRX.qrc \
 		C:\Qt\6.5.3\msvc2019_64\lib\Qt6Widgetsd.prl \
 		C:\Qt\6.5.3\msvc2019_64\lib\Qt6Guid.prl \
 		C:\Qt\6.5.3\msvc2019_64\lib\Qt6Networkd.prl \
@@ -438,6 +439,7 @@ C:\Qt\6.5.3\msvc2019_64\lib\Qt6Network.prl:
 C:\Qt\6.5.3\msvc2019_64\lib\Qt6Core.prl:
 C:\Qt\6.5.3\msvc2019_64\lib\Qt6EntryPoint.prl:
 C:\Qt\6.5.3\msvc2019_64\mkspecs\features\build_pass.prf:
+..\..\BTCETHTRX.qrc:
 C:\Qt\6.5.3\msvc2019_64\lib\Qt6Widgetsd.prl:
 C:\Qt\6.5.3\msvc2019_64\lib\Qt6Guid.prl:
 C:\Qt\6.5.3\msvc2019_64\lib\Qt6Networkd.prl:

@@ -16,10 +16,10 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>70</y>
-     <width>531</width>
-     <height>321</height>
+     <x>90</x>
+     <y>50</y>
+     <width>591</width>
+     <height>361</height>
     </rect>
    </property>
    <property name="title">
@@ -28,8 +28,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>270</y>
+      <x>350</x>
+      <y>310</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -41,8 +41,8 @@
    <widget class="QPushButton" name="ok">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>270</y>
+      <x>470</x>
+      <y>310</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -95,6 +95,38 @@
       <width>113</width>
       <height>24</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>200</y>
+      <width>191</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/new/prefix1/TRX.jfif);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>190</y>
+      <width>151</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/new/prefix1/BTC.jfif);</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

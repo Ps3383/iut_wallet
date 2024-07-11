@@ -18,8 +18,8 @@
     <rect>
      <x>110</x>
      <y>70</y>
-     <width>551</width>
-     <height>321</height>
+     <width>581</width>
+     <height>351</height>
     </rect>
    </property>
    <property name="title">
@@ -28,8 +28,8 @@
    <widget class="QPushButton" name="back">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>280</y>
+      <x>360</x>
+      <y>300</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -41,8 +41,8 @@
    <widget class="QPushButton" name="ok">
     <property name="geometry">
      <rect>
-      <x>440</x>
-      <y>280</y>
+      <x>460</x>
+      <y>300</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -54,8 +54,8 @@
    <widget class="QLineEdit" name="adress">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>90</y>
+      <x>200</x>
+      <y>60</y>
       <width>113</width>
       <height>24</height>
      </rect>
@@ -64,8 +64,8 @@
    <widget class="QLineEdit" name="amount">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>160</y>
+      <x>200</x>
+      <y>120</y>
       <width>113</width>
       <height>24</height>
      </rect>
@@ -75,7 +75,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>80</y>
+      <y>50</y>
       <width>121</width>
       <height>41</height>
      </rect>
@@ -88,13 +88,45 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>150</y>
+      <y>110</y>
       <width>111</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>source amount</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>190</y>
+      <width>151</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/new/prefix1/ETH.jfif);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>190</y>
+      <width>151</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/new/prefix1/TRX.jfif);</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

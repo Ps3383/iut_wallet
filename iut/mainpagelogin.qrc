@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>banner-digital-trends-in-trade-2024.jpg</file>
+    </qresource>
+    <qresource prefix="/new/prefix2">
+        <file>banner-digital-trends-in-trade-2024.jpg</file>
+    </qresource>
+</RCC>

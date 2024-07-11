@@ -44,12 +44,14 @@ public:
         groupBox = new QGroupBox(sighuppage);
         groupBox->setObjectName("groupBox");
         groupBox->setGeometry(QRect(60, 10, 581, 371));
+        groupBox->setStyleSheet(QString::fromUtf8(""));
         lineemail = new QLineEdit(groupBox);
         lineemail->setObjectName("lineemail");
         lineemail->setGeometry(QRect(210, 40, 113, 24));
         label = new QLabel(groupBox);
         label->setObjectName("label");
         label->setGeometry(QRect(100, 40, 61, 21));
+        label->setStyleSheet(QString::fromUtf8(""));
         label_2 = new QLabel(groupBox);
         label_2->setObjectName("label_2");
         label_2->setGeometry(QRect(90, 90, 61, 21));

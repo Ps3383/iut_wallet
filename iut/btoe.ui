@@ -18,8 +18,8 @@
     <rect>
      <x>100</x>
      <y>60</y>
-     <width>531</width>
-     <height>321</height>
+     <width>601</width>
+     <height>361</height>
     </rect>
    </property>
    <property name="title">
@@ -28,8 +28,8 @@
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>270</y>
+      <x>350</x>
+      <y>310</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -41,8 +41,8 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>270</y>
+      <x>470</x>
+      <y>310</y>
       <width>80</width>
       <height>24</height>
      </rect>
@@ -95,6 +95,38 @@
       <width>113</width>
       <height>24</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>190</y>
+      <width>161</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/new/prefix1/BTC.jfif);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>190</y>
+      <width>181</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">image: url(:/new/prefix1/ETH.jfif);</string>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

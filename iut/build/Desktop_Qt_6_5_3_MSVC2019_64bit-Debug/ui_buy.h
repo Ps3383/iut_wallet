@@ -31,6 +31,9 @@ public:
     QLineEdit *linebtc;
     QLineEdit *lineeth;
     QLineEdit *linetrx;
+    QLabel *label_4;
+    QLabel *label_5;
+    QLabel *label_6;
 
     void setupUi(QDialog *buy)
     {
@@ -66,6 +69,18 @@ public:
         linetrx = new QLineEdit(frame);
         linetrx->setObjectName("linetrx");
         linetrx->setGeometry(QRect(160, 180, 113, 24));
+        label_4 = new QLabel(frame);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(40, 250, 211, 71));
+        label_4->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/BTC.jfif);"));
+        label_5 = new QLabel(frame);
+        label_5->setObjectName("label_5");
+        label_5->setGeometry(QRect(350, 20, 151, 91));
+        label_5->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/ETH.jfif);"));
+        label_6 = new QLabel(frame);
+        label_6->setObjectName("label_6");
+        label_6->setGeometry(QRect(350, 130, 161, 91));
+        label_6->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/TRX.jfif);"));
 
         retranslateUi(buy);
 
@@ -80,6 +95,9 @@ public:
         label->setText(QCoreApplication::translate("buy", "BTC", nullptr));
         label_2->setText(QCoreApplication::translate("buy", "ETH", nullptr));
         label_3->setText(QCoreApplication::translate("buy", "TRX", nullptr));
+        label_4->setText(QString());
+        label_5->setText(QString());
+        label_6->setText(QString());
     } // retranslateUi
 
 };

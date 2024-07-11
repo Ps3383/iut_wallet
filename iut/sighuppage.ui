@@ -22,6 +22,9 @@
      <height>371</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <property name="title">
     <string>sign up</string>
    </property>
@@ -43,6 +46,9 @@
       <width>61</width>
       <height>21</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Email</string>

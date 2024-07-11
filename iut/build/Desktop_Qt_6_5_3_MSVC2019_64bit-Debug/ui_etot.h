@@ -29,6 +29,8 @@ public:
     QLineEdit *amount;
     QLabel *label;
     QLabel *label_2;
+    QLabel *label_3;
+    QLabel *label_4;
 
     void setupUi(QDialog *ETOT)
     {
@@ -37,25 +39,33 @@ public:
         ETOT->resize(791, 474);
         groupBox = new QGroupBox(ETOT);
         groupBox->setObjectName("groupBox");
-        groupBox->setGeometry(QRect(110, 70, 551, 321));
+        groupBox->setGeometry(QRect(110, 70, 581, 351));
         back = new QPushButton(groupBox);
         back->setObjectName("back");
-        back->setGeometry(QRect(330, 280, 80, 24));
+        back->setGeometry(QRect(360, 300, 80, 24));
         ok = new QPushButton(groupBox);
         ok->setObjectName("ok");
-        ok->setGeometry(QRect(440, 280, 80, 24));
+        ok->setGeometry(QRect(460, 300, 80, 24));
         adress = new QLineEdit(groupBox);
         adress->setObjectName("adress");
-        adress->setGeometry(QRect(210, 90, 113, 24));
+        adress->setGeometry(QRect(200, 60, 113, 24));
         amount = new QLineEdit(groupBox);
         amount->setObjectName("amount");
-        amount->setGeometry(QRect(210, 160, 113, 24));
+        amount->setGeometry(QRect(200, 120, 113, 24));
         label = new QLabel(groupBox);
         label->setObjectName("label");
-        label->setGeometry(QRect(50, 80, 121, 41));
+        label->setGeometry(QRect(50, 50, 121, 41));
         label_2 = new QLabel(groupBox);
         label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(50, 150, 111, 41));
+        label_2->setGeometry(QRect(50, 110, 111, 41));
+        label_3 = new QLabel(groupBox);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(50, 190, 151, 111));
+        label_3->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/ETH.jfif);"));
+        label_4 = new QLabel(groupBox);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(230, 190, 151, 111));
+        label_4->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/TRX.jfif);"));
 
         retranslateUi(ETOT);
 
@@ -70,6 +80,8 @@ public:
         ok->setText(QCoreApplication::translate("ETOT", "OK", nullptr));
         label->setText(QCoreApplication::translate("ETOT", "destination address", nullptr));
         label_2->setText(QCoreApplication::translate("ETOT", "source amount", nullptr));
+        label_3->setText(QString());
+        label_4->setText(QString());
     } // retranslateUi
 
 };

@@ -29,6 +29,8 @@ public:
     QLabel *label_2;
     QLineEdit *adress;
     QLineEdit *amount;
+    QLabel *label_3;
+    QLabel *label_4;
 
     void setupUi(QDialog *BTOT)
     {
@@ -37,13 +39,13 @@ public:
         BTOT->resize(806, 471);
         groupBox = new QGroupBox(BTOT);
         groupBox->setObjectName("groupBox");
-        groupBox->setGeometry(QRect(110, 70, 531, 321));
+        groupBox->setGeometry(QRect(90, 50, 591, 361));
         pushButton = new QPushButton(groupBox);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(290, 270, 80, 24));
+        pushButton->setGeometry(QRect(350, 310, 80, 24));
         ok = new QPushButton(groupBox);
         ok->setObjectName("ok");
-        ok->setGeometry(QRect(400, 270, 80, 24));
+        ok->setGeometry(QRect(470, 310, 80, 24));
         label = new QLabel(groupBox);
         label->setObjectName("label");
         label->setGeometry(QRect(60, 60, 121, 41));
@@ -56,6 +58,14 @@ public:
         amount = new QLineEdit(groupBox);
         amount->setObjectName("amount");
         amount->setGeometry(QRect(220, 140, 113, 24));
+        label_3 = new QLabel(groupBox);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(270, 200, 191, 81));
+        label_3->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/TRX.jfif);"));
+        label_4 = new QLabel(groupBox);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(70, 190, 151, 111));
+        label_4->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/BTC.jfif);"));
 
         retranslateUi(BTOT);
 
@@ -70,6 +80,8 @@ public:
         ok->setText(QCoreApplication::translate("BTOT", "ok", nullptr));
         label->setText(QCoreApplication::translate("BTOT", "destination address", nullptr));
         label_2->setText(QCoreApplication::translate("BTOT", "source amount", nullptr));
+        label_3->setText(QString());
+        label_4->setText(QString());
     } // retranslateUi
 
 };
