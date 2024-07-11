@@ -149,11 +149,7 @@ void MyTcpServer::onReadyRead() {
         //     return;
         // }
 
-<<<<<<< HEAD
-        //open and initial users.db database
 
-=======
->>>>>>> 3cafbe004897a500c1505583cef09253363ef1d7
 	//open and initial users.db database 
         initializeUserDatabase();
         QSqlQuery query;

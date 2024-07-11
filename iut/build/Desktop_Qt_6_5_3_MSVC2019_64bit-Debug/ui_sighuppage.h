@@ -35,6 +35,7 @@ public:
     QLineEdit *linetele;
     QPushButton *regi;
     QPushButton *pushButton_2;
+    QLabel *label_6;
 
     void setupUi(QDialog *sighuppage)
     {
@@ -82,6 +83,10 @@ public:
         pushButton_2 = new QPushButton(groupBox);
         pushButton_2->setObjectName("pushButton_2");
         pushButton_2->setGeometry(QRect(350, 320, 80, 24));
+        label_6 = new QLabel(groupBox);
+        label_6->setObjectName("label_6");
+        label_6->setGeometry(QRect(370, 30, 191, 261));
+        label_6->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/lllll.jpg);"));
 
         retranslateUi(sighuppage);
 
@@ -99,6 +104,7 @@ public:
         label_5->setText(QCoreApplication::translate("sighuppage", "telephone", nullptr));
         regi->setText(QCoreApplication::translate("sighuppage", "register", nullptr));
         pushButton_2->setText(QCoreApplication::translate("sighuppage", "back", nullptr));
+        label_6->setText(QString());
     } // retranslateUi
 
 };

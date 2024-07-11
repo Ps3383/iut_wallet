@@ -42,7 +42,7 @@
   <widget class="QPushButton" name="change">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>350</x>
      <y>60</y>
      <width>121</width>
      <height>31</height>
@@ -55,7 +55,7 @@
   <widget class="QPushButton" name="changeph">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>510</x>
      <y>60</y>
      <width>121</width>
      <height>31</height>
@@ -68,7 +68,7 @@
   <widget class="QPushButton" name="changea">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>350</x>
      <y>130</y>
      <width>121</width>
      <height>31</height>
@@ -81,7 +81,7 @@
   <widget class="QPushButton" name="changen">
    <property name="geometry">
     <rect>
-     <x>490</x>
+     <x>510</x>
      <y>130</y>
      <width>121</width>
      <height>31</height>
@@ -95,13 +95,61 @@
    <property name="geometry">
     <rect>
      <x>80</x>
-     <y>150</y>
+     <y>130</y>
      <width>131</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
     <string>show wallet</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>300</y>
+     <width>221</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/new/prefix1/BTC.jfif);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>300</y>
+     <width>201</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/new/prefix1/ETH.jfif);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>180</y>
+     <width>171</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">image: url(:/new/prefix1/TRX.jfif);</string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>

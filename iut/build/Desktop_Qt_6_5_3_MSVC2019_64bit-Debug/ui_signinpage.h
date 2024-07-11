@@ -29,6 +29,8 @@ public:
     QLabel *label_2;
     QLineEdit *lineemail;
     QLineEdit *linepassword;
+    QLabel *label_3;
+    QLabel *label_4;
 
     void setupUi(QDialog *signinpage)
     {
@@ -56,6 +58,14 @@ public:
         linepassword = new QLineEdit(groupBox);
         linepassword->setObjectName("linepassword");
         linepassword->setGeometry(QRect(150, 110, 113, 24));
+        label_3 = new QLabel(groupBox);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(40, 180, 161, 131));
+        label_3->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/ETH.jfif);"));
+        label_4 = new QLabel(groupBox);
+        label_4->setObjectName("label_4");
+        label_4->setGeometry(QRect(320, 20, 151, 201));
+        label_4->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/TRX.jfif);"));
 
         retranslateUi(signinpage);
 
@@ -70,6 +80,8 @@ public:
         pushButton_2->setText(QCoreApplication::translate("signinpage", "back", nullptr));
         label->setText(QCoreApplication::translate("signinpage", "Email", nullptr));
         label_2->setText(QCoreApplication::translate("signinpage", "Password", nullptr));
+        label_3->setText(QString());
+        label_4->setText(QString());
     } // retranslateUi
 
 };

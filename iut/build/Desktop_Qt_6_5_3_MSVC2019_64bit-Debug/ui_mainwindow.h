@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -26,6 +27,8 @@ public:
     QPushButton *pushButton;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
+    QLabel *label;
+    QLabel *label_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -39,17 +42,25 @@ public:
         centralwidget->setObjectName("centralwidget");
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(170, 120, 131, 41));
+        pushButton->setGeometry(QRect(140, 80, 131, 41));
         pushButton->setStyleSheet(QString::fromUtf8("background-color:rgb(255, 255, 255);\n"
 ""));
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(360, 120, 141, 41));
+        pushButton_2->setGeometry(QRect(320, 80, 141, 41));
         pushButton_2->setStyleSheet(QString::fromUtf8("background-color:rgb(255, 255, 255);\n"
 ""));
         pushButton_3 = new QPushButton(centralwidget);
         pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setGeometry(QRect(450, 250, 80, 24));
+        pushButton_3->setGeometry(QRect(660, 390, 80, 24));
+        label = new QLabel(centralwidget);
+        label->setObjectName("label");
+        label->setGeometry(QRect(80, 160, 221, 191));
+        label->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/lllll.jpg);"));
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(340, 100, 261, 301));
+        label_2->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/BTC.jfif);"));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -71,6 +82,8 @@ public:
         pushButton->setText(QCoreApplication::translate("MainWindow", "sign in", nullptr));
         pushButton_2->setText(QCoreApplication::translate("MainWindow", "sigh up", nullptr));
         pushButton_3->setText(QCoreApplication::translate("MainWindow", "exit", nullptr));
+        label->setText(QString());
+        label_2->setText(QString());
     } // retranslateUi
 
 };

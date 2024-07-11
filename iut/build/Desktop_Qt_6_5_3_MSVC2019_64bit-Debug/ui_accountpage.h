@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 
 QT_BEGIN_NAMESPACE
@@ -26,6 +27,9 @@ public:
     QPushButton *changea;
     QPushButton *changen;
     QPushButton *showwallet;
+    QLabel *label;
+    QLabel *label_2;
+    QLabel *label_3;
 
     void setupUi(QDialog *accountpage)
     {
@@ -40,19 +44,31 @@ public:
         createwallet->setGeometry(QRect(80, 60, 131, 41));
         change = new QPushButton(accountpage);
         change->setObjectName("change");
-        change->setGeometry(QRect(320, 60, 121, 31));
+        change->setGeometry(QRect(350, 60, 121, 31));
         changeph = new QPushButton(accountpage);
         changeph->setObjectName("changeph");
-        changeph->setGeometry(QRect(490, 60, 121, 31));
+        changeph->setGeometry(QRect(510, 60, 121, 31));
         changea = new QPushButton(accountpage);
         changea->setObjectName("changea");
-        changea->setGeometry(QRect(320, 130, 121, 31));
+        changea->setGeometry(QRect(350, 130, 121, 31));
         changen = new QPushButton(accountpage);
         changen->setObjectName("changen");
-        changen->setGeometry(QRect(490, 130, 121, 31));
+        changen->setGeometry(QRect(510, 130, 121, 31));
         showwallet = new QPushButton(accountpage);
         showwallet->setObjectName("showwallet");
-        showwallet->setGeometry(QRect(80, 150, 131, 41));
+        showwallet->setGeometry(QRect(80, 130, 131, 41));
+        label = new QLabel(accountpage);
+        label->setObjectName("label");
+        label->setGeometry(QRect(50, 300, 221, 111));
+        label->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/BTC.jfif);"));
+        label_2 = new QLabel(accountpage);
+        label_2->setObjectName("label_2");
+        label_2->setGeometry(QRect(350, 300, 201, 111));
+        label_2->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/ETH.jfif);"));
+        label_3 = new QLabel(accountpage);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(210, 180, 171, 111));
+        label_3->setStyleSheet(QString::fromUtf8("image: url(:/new/prefix1/TRX.jfif);"));
 
         retranslateUi(accountpage);
 
@@ -69,6 +85,9 @@ public:
         changea->setText(QCoreApplication::translate("accountpage", "change address", nullptr));
         changen->setText(QCoreApplication::translate("accountpage", "change name", nullptr));
         showwallet->setText(QCoreApplication::translate("accountpage", "show wallet", nullptr));
+        label->setText(QString());
+        label_2->setText(QString());
+        label_3->setText(QString());
     } // retranslateUi
 
 };
