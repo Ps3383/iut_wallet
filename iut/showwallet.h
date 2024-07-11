@@ -29,6 +29,8 @@ private slots:
 
     void on_decrease_clicked();
 
+    void on_trade_clicked();
+
 private:
     Ui::showwallet *ui;
 };

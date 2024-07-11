@@ -4,6 +4,9 @@
 #include"accountpage.h"
 #include"signinpage.h"
 #include"buy.h"
+#include"trade.h"
+#include"increase.h"
+#include"decrease.h"
 #include"sell.h"
 
 showwallet::showwallet(QWidget *parent)
@@ -58,12 +61,27 @@ void showwallet::on_sell_clicked()
 
 void showwallet::on_increase_clicked()
 {
-    // increase usus
+    hide();
+    increase * n;
+    n =new increase(this);
+    n->show();
 }
 
 
 void showwallet::on_decrease_clicked()
 {
-    // decrease usus
+    hide();
+    decrease * n;
+    n =new decrease(this);
+    n->show();
+}
+
+
+void showwallet::on_trade_clicked()
+{
+    hide();
+    trade * n;
+    n =new trade(this);
+    n->show();
 }
 
